@@ -11,15 +11,18 @@ public class Welcome extends JFrame {
 
     public Welcome() {
         this.setTitle("欢迎进入进销存管理系统");
-        this.setBounds(400, 200, 500, 350);
+        this.setBounds(0, 0, 500, 350);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+
         appendComponents();
+
         this.setVisible(true);
     }
 
     // 登录界面控件
-    public void appendComponents() {
+    private void appendComponents() {
 
         /*** Components ***/
 
@@ -64,7 +67,7 @@ public class Welcome extends JFrame {
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
-                Home home = new Home();
+                new Home();
                 Welcome.this.dispose(); // clear resource
             }
         });

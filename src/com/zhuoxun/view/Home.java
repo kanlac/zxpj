@@ -10,11 +10,14 @@ public class Home extends JFrame {
         this.setTitle("进销存管理 - 主界面");
         this.setBounds(200, 100, 1000, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+
         appendComponents();
+
         this.setVisible(true);
     }
 
-    public void appendComponents() {
+    private void appendComponents() {
         // append tabs
         JTabbedPane pane = new JTabbedPane();
         pane.add(new PurchasePanel(), "采购管理"); // constraints -> pane name

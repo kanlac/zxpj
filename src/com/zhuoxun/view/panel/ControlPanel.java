@@ -1,18 +1,20 @@
 package com.zhuoxun.view.panel;
 
-import com.zhuoxun.view.subview.OperatorManager;
+import com.zhuoxun.view.subview.ManagerOpr;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 
 public class ControlPanel extends JPanel {
 
+    private ManagerOpr managerOpr = null;
+
     public ControlPanel() {
         this.setLayout(null);
         appendComponent();
     }
 
-    public void appendComponent() {
+    private void appendComponent() {
 
         /*** Components ***/
 
@@ -39,7 +41,10 @@ public class ControlPanel extends JPanel {
         /*** Listeners ***/
 
         operateBtn.addActionListener(e -> {
-            OperatorManager operatorManager = new OperatorManager();
+            if (managerOpr == null) {
+                managerOpr = new ManagerOpr();
+                ControlPanel.this.add(managerOpr);
+            }
         });
 
         changePasswordBtn.addActionListener(e -> {
