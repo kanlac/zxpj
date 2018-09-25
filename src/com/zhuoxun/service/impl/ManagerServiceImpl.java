@@ -22,7 +22,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public List<Manager> findAll() {
         qr = new QueryRunner();
-        sql = "SELECT * FROM Manager WHERE name = ? AND password = ?";
+        sql = "SELECT * FROM Manager";
         List<Manager> r = null;
         ResultSetHandler<List<Manager>> resultSetHandler = new BeanListHandler<>(Manager.class);
 
