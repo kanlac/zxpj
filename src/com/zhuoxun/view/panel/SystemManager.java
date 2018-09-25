@@ -15,7 +15,7 @@ public class SystemManager extends JPanel {
 
     public void appendComponent() {
 
-        /*** Set components ***/
+        /*** Components ***/
 
         JButton operateBtn = new JButton("操作员管理");
         operateBtn.setBounds(20, 20, 100, 30);
@@ -37,28 +37,17 @@ public class SystemManager extends JPanel {
         timeLabel.setBounds(0, 510, 1000, 30);
         this.add(timeLabel);
 
-        /*** Set listeners ***/
+        /*** Listeners ***/
 
-        operateBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OperatorManager operatorManager = new OperatorManager();
-            }
+        operateBtn.addActionListener(e -> {
+            OperatorManager operatorManager = new OperatorManager();
         });
 
-        changePasswordBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // todo: display panel
-            }
+        changePasswordBtn.addActionListener(e -> {
+            // todo: display panel
         });
 
-        exitBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(-1);
-            }
-        });
+        exitBtn.addActionListener(e -> System.exit(-1));
 
     }
 }

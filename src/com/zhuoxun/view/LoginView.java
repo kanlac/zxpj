@@ -1,10 +1,10 @@
 package com.zhuoxun.view;
 
 import com.zhuoxun.model.Manager;
+import com.zhuoxun.service.ManagerService;
+import com.zhuoxun.service.impl.ManagerServiceImpl;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginView extends JFrame {
     public static Manager manager = null;
@@ -14,52 +14,78 @@ public class LoginView extends JFrame {
         this.setBounds(400, 200, 500, 350);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        appendLoginViewComponent();
+        appendComponents();
         this.setVisible(true);
     }
 
     // 登录界面控件
-    public void appendLoginViewComponent() {
-        // image...
+    public void appendComponents() {
+
+        /*** Components ***/
+
+        // todo: image
 
 
-        // username
-        JLabel user = new JLabel("用户名：");
-        user.setBounds(120, 140, 80, 30);
-        this.add(user);
+        JLabel usernameLabel = new JLabel("用户名：");
+        usernameLabel.setBounds(120, 140, 80, 30);
+        this.add(usernameLabel);
 
-        // username input field
         JTextField username_field = new JTextField();
         username_field.setBounds(200, 140, 200, 30);
         this.add(username_field);
 
-        // password
-        JLabel password = new JLabel("密码：");
-        password.setBounds(120, 180, 80, 30);
-        this.add(password);
+        JLabel passwordLabel = new JLabel("密码：");
+        passwordLabel.setBounds(120, 180, 80, 30);
+        this.add(passwordLabel);
 
-        // password input field
         JPasswordField password_field = new JPasswordField();
         password_field.setBounds(200, 180, 200, 30);
         this.add(password_field);
 
-        // login button
-        JButton login_button = new JButton("登录");
-        login_button.setBounds(140, 240, 100, 30);
-        this.add(login_button);
+        JButton loginBtn = new JButton("登录");
+        loginBtn.setBounds(140, 240, 100, 30);
+        this.add(loginBtn);
 
-        // reset button
-        JButton reset_button = new JButton("重置");
-        reset_button.setBounds(260, 240, 100, 30);
-        this.add(reset_button);
+        JButton resetBtn = new JButton("重置");
+        resetBtn.setBounds(260, 240, 100, 30);
+        this.add(resetBtn);
 
-        // reset text field
-        reset_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                username_field.setText("");
-                password_field.setText("");
+        /*** Listeners ***/
+
+        loginBtn.addActionListener(e -> {
+            String username = username_field.getText();
+            char[] password = password_field.getPassword();
+
+            if (password == null) {
+                System.out.println("null");
+            } else {
+                System.out.println("exists");
+                System.out.println("password = " + String.valueOf(password));
             }
+
+
+            ManagerService managerService = new ManagerServiceImpl();
+            Manager manager = managerService.findByUsername(username);
+
+            if (manager == null) {
+                JOptionPane.showMessageDialog(null, "该用户不存在");
+            } else if (!String.valueOf(password).equals(manager.getPassword())) {
+
+                // test
+                System.out.println("get from db: " + manager.getPassword());
+                System.out.println("username: " + manager.getUsername());
+                System.out.println("mobile: " + manager.getEmail());
+
+                JOptionPane.showMessageDialog(null, "密码错误");
+            } else {
+                Home home = new Home();
+                LoginView.this.dispose();
+            }
+        });
+
+        resetBtn.addActionListener(e -> {
+            username_field.setText("");
+            password_field.setText("");
         });
     }
 }

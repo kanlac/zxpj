@@ -5,11 +5,11 @@ import com.zhuoxun.model.Manager;
 import com.zhuoxun.service.ManagerService;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerServiceImpl implements ManagerService {
@@ -29,6 +29,25 @@ public class ManagerServiceImpl implements ManagerService {
         try {
             conn = MySQLHelper.getConn();
             r = qr.query(conn, sql, resultSetHandler);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
+
+    @Override
+    public Manager findByUsername(String username) {
+        qr = new QueryRunner();
+        sql = "SELECT * FROM Manager WHERE username = ?";
+        params = new Object[] { username };
+        ResultSetHandler<Manager> resultSetHandler = new BeanHandler<>(Manager.class);
+        Manager r = null;
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, sql, resultSetHandler, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

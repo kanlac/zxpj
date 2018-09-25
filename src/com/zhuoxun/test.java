@@ -10,6 +10,7 @@ public class test {
         ManagerService service = new ManagerServiceImpl();
         service.findAll();
 
-        Home h = new Home();
+//        Home h = new Home();
+        LoginView l = new LoginView();
     }
 }
