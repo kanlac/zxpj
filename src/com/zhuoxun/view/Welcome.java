@@ -6,11 +6,11 @@ import com.zhuoxun.service.impl.ManagerServiceImpl;
 
 import javax.swing.*;
 
-public class LoginView extends JFrame {
+public class Welcome extends JFrame {
     public static Manager manager = null;
 
-    public LoginView() {
-        this.setTitle("进销存管理系统");
+    public Welcome() {
+        this.setTitle("欢迎进入进销存管理系统");
         this.setBounds(400, 200, 500, 350);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,14 +58,14 @@ public class LoginView extends JFrame {
 
             ManagerService managerService = new ManagerServiceImpl();
             Manager manager = managerService.findByUsername(username);
-            
+
             if (manager == null) {
                 JOptionPane.showMessageDialog(null, "该用户不存在");
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
                 Home home = new Home();
-                LoginView.this.dispose();
+                Welcome.this.dispose(); // clear resource
             }
         });
 

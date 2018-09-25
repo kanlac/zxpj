@@ -1,12 +1,13 @@
 package com.zhuoxun.view.panel;
 
-import com.zhuoxun.view.OperatorManager;
+import com.zhuoxun.view.subview.OperatorManager;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 
-public class SystemManager extends JPanel {
-    public SystemManager() {
+public class ControlPanel extends JPanel {
+
+    public ControlPanel() {
         this.setLayout(null);
         appendComponent();
     }

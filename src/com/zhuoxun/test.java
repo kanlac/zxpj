@@ -2,8 +2,7 @@ package com.zhuoxun;
 
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
-import com.zhuoxun.view.Home;
-import com.zhuoxun.view.LoginView;
+import com.zhuoxun.view.Welcome;
 
 public class test {
     public static void main(String[] args) {
@@ -11,6 +10,6 @@ public class test {
         service.findAll();
 
 //        Home h = new Home();
-        LoginView l = new LoginView();
+        Welcome l = new Welcome();
     }
 }

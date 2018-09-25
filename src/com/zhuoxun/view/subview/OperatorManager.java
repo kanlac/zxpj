@@ -1,4 +1,4 @@
-package com.zhuoxun.view;
+package com.zhuoxun.view.subview;
 
 import javax.swing.*;
 
