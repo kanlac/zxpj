@@ -25,7 +25,7 @@ public class MySQLHelper {
      */
 
     public static Connection getConn() throws SQLException {
-        String url = "jdbc:mysql://127.0.0.1:3306/zxpj?useUnicode=true&characterEncoding=UTF8&autoRe connect=true&autoReconnectForPools=true";
+        String url = "jdbc:mysql://127.0.0.1:3306/zxpj?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&autoReconnectForPools=true";
         String user = "root";
         String password = "tbu33p6r9";
 
