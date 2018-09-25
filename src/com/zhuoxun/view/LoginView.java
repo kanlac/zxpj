@@ -56,26 +56,12 @@ public class LoginView extends JFrame {
             String username = username_field.getText();
             char[] password = password_field.getPassword();
 
-            if (password == null) {
-                System.out.println("null");
-            } else {
-                System.out.println("exists");
-                System.out.println("password = " + String.valueOf(password));
-            }
-
-
             ManagerService managerService = new ManagerServiceImpl();
             Manager manager = managerService.findByUsername(username);
-
+            
             if (manager == null) {
                 JOptionPane.showMessageDialog(null, "该用户不存在");
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
-
-                // test
-                System.out.println("get from db: " + manager.getPassword());
-                System.out.println("username: " + manager.getUsername());
-                System.out.println("mobile: " + manager.getEmail());
-
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
                 Home home = new Home();

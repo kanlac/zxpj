@@ -12,6 +12,8 @@ public class Manager implements Serializable {
     private String note;
     private int status; // 0 表示正常，-1 表示锁定
 
+    /*** Setters and getters ***/
+
     public int getManager_id() {
         return manager_id;
     }
@@ -38,5 +40,33 @@ public class Manager implements Serializable {
 
     public int getStatus() {
         return status;
+    }
+
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
