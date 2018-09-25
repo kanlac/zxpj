@@ -12,7 +12,7 @@ public class LoginView extends JFrame {
 
     public LoginView() {
         this.setTitle("进销存管理系统");
-        this.setBounds(200, 100, 500, 350);
+        this.setBounds(400, 200, 500, 350);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         appendLoginViewComponent();
