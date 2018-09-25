@@ -1,7 +1,6 @@
 package com.zhuoxun.view;
 
 import com.zhuoxun.model.Manager;
-import contrib.com.blogofbug.swing.components.ImageLabel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
