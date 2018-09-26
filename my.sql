@@ -12,6 +12,15 @@ CREATE TABLE Manager(
   PRIMARY KEY (`manager_id`)
 );
 
+CREATE TABLE Product (
+  `product_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `isbn` VARCHAR(32) NOT NULL,
+  `name` VARCHAR(32) NOT NULL,
+  `sale_price` DECIMAL(17, 2) NOT NULL ,
+  `unit` VARCHAR(32),
+  PRIMARY KEY (`product_id`)
+);
+
 INSERT INTO Manager (`username`, `password`, `mobile`)
 VALUE ('Dawson', 123321, 13022253334);
 

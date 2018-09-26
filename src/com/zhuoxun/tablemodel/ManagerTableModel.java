@@ -1,4 +1,4 @@
-package com.zhuoxun.view.tablemodel;
+package com.zhuoxun.tablemodel;
 
 import com.zhuoxun.model.Manager;
 
