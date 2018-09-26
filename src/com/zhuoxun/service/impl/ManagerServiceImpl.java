@@ -55,4 +55,22 @@ public class ManagerServiceImpl implements ManagerService {
 
         return r;
     }
+
+    @Override
+    public boolean append(Manager m) {
+        qr = new QueryRunner();
+        sql = "INSERT INTO Manager (`username`, `password`, `mobile`, `email`, `status`) VALUE (?, ?, ?, ?, ?);";
+        params = new Object[] { m.getUsername(), m.getPassword(), m.getMobile(), m.getEmail(), m.getStatus() };
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, sql, params);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
+    }
 }

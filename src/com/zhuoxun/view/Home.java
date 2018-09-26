@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Home extends JFrame {
     public Home() {
         this.setTitle("进销存管理 - 主界面");
-        this.setBounds(200, 100, 1000, 600);
+        this.setBounds(0, 0, 1000, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 

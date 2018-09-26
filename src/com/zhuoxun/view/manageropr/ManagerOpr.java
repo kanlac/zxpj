@@ -1,4 +1,4 @@
-package com.zhuoxun.view.subview;
+package com.zhuoxun.view.manageropr;
 
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.ManagerTableModel;

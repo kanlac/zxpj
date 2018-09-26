@@ -1,6 +1,6 @@
 package com.zhuoxun.view.panel;
 
-import com.zhuoxun.view.subview.ManagerOpr;
+import com.zhuoxun.view.manageropr.ManagerOpr;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -19,15 +19,15 @@ public class ControlPanel extends JPanel {
         /*** Components ***/
 
         JButton operateBtn = new JButton("操作员管理");
-        operateBtn.setBounds(20, 20, 100, 30);
+        operateBtn.setBounds(20, 10, 100, 30);
         this.add(operateBtn);
 
         JButton changePasswordBtn = new JButton("更改密码");
-        changePasswordBtn.setBounds(130, 20, 100, 30);
+        changePasswordBtn.setBounds(130, 10, 100, 30);
         this.add(changePasswordBtn);
 
         JButton exitBtn = new JButton("退出系统");
-        exitBtn.setBounds(240, 20, 100, 30);
+        exitBtn.setBounds(240, 10, 100, 30);
         this.add(exitBtn);
 
         // todo: background image

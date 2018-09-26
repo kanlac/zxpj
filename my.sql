@@ -15,4 +15,6 @@ CREATE TABLE Manager(
 INSERT INTO Manager (`username`, `password`, `mobile`)
 VALUE ('Dawson', 123321, 13022253334);
 
+INSERT INTO Manager (`username`, `password`, `mobile`, `email`, `status`) VALUE ('Zimmerman', 23444, 18022258888, 'abc@gmail.com', 1);
+
 SELECT * FROM Manager;

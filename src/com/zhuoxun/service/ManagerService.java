@@ -9,4 +9,6 @@ public interface ManagerService {
     List<Manager> findAll();
 
     Manager findByUsername(String username);
+
+    boolean append(Manager m);
 }
