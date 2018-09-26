@@ -2,6 +2,7 @@ package com.zhuoxun;
 
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
+import com.zhuoxun.view.Home;
 import com.zhuoxun.view.Welcome;
 
 public class test {
@@ -9,7 +10,7 @@ public class test {
         ManagerService service = new ManagerServiceImpl();
         service.findAll();
 
-//        Home h = new Home();
-        Welcome l = new Welcome();
+        Home h = new Home();
+//        Welcome l = new Welcome();
     }
 }

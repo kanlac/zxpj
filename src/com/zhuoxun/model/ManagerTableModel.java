@@ -12,6 +12,7 @@ public class ManagerTableModel extends AbstractTableModel {
 
     public ManagerTableModel(List<Manager> rows) {
         this.rows = rows;
+        fireTableRowsInserted(rows.size(), rows.size());
     }
 
     /*** Alter data ***/
@@ -23,8 +24,10 @@ public class ManagerTableModel extends AbstractTableModel {
         }
     }
 
-    public void append(Manager entity) {
-        // todo
+    private void append(Manager entity) {
+        int rowCnt = rows.size();
+        rows.add(entity);
+        fireTableRowsInserted(rowCnt, rowCnt); // live update table
     }
 
 
