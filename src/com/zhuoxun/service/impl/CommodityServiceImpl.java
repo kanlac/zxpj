@@ -9,7 +9,7 @@ import java.util.List;
 
 @SuppressWarnings("Duplicates")
 public class CommodityServiceImpl implements CommodityService {
-    private static String sql;
+
     private static Object[] params;
     private static QueryRunner qr;
     private static Connection conn;

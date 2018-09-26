@@ -1,6 +1,7 @@
 package com.zhuoxun.service.impl;
 
 import com.zhuoxun.jdbc.MySQLHelper;
+import com.zhuoxun.jdbc.SQLQuery;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.service.ManagerService;
 import org.apache.commons.dbutils.QueryRunner;
@@ -15,20 +16,18 @@ import java.util.List;
 @SuppressWarnings("Duplicates")
 public class ManagerServiceImpl implements ManagerService {
 
-    private String sql;
     private Object[] params;
     private QueryRunner qr = new QueryRunner();
     private Connection conn;
 
     @Override
     public List<Manager> findAll() {
-        sql = "SELECT * FROM Manager";
         List<Manager> r = null;
         ResultSetHandler<List<Manager>> resultSetHandler = new BeanListHandler<>(Manager.class);
 
         try {
             conn = MySQLHelper.getConn();
-            r = qr.query(conn, sql, resultSetHandler);
+            r = qr.query(conn, SQLQuery.Manager.FIND_ALL, resultSetHandler);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,14 +38,13 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public Manager findByUsername(String username) {
-        sql = "SELECT * FROM Manager WHERE username = ?";
         params = new Object[] { username };
         ResultSetHandler<Manager> resultSetHandler = new BeanHandler<>(Manager.class);
         Manager r = null;
 
         try {
             conn = MySQLHelper.getConn();
-            r = qr.query(conn, sql, resultSetHandler, params);
+            r = qr.query(conn, SQLQuery.Manager.FIND_BY_USERNAME, resultSetHandler, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,13 +55,12 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public boolean add(Manager m) {
-        sql = "INSERT INTO Manager (`username`, `password`, `mobile`, `email`, `status`) VALUE (?, ?, ?, ?, ?);";
         params = new Object[] { m.getUsername(), m.getPassword(), m.getMobile(), m.getEmail(), m.getStatus() };
         int rows = 0;
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, sql, params);
+            rows = qr.update(conn, SQLQuery.Manager.ADD, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,12 +71,11 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public boolean revoke(int id) {
-        sql = "DELETE FROM Manager WHERE manager_id = ?";
         int rows = 0;
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, sql, id);
+            rows = qr.update(conn, SQLQuery.Manager.REVOKE, id);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
