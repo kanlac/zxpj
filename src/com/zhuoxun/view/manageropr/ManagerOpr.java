@@ -46,14 +46,17 @@ public class ManagerOpr extends JInternalFrame {
         changePwBtn.setBounds(240, 0, 100, 30);
         this.add(changePwBtn);
 
-        // Initialize table
-        table = new JTable();
+        // Initialize table model
         List<Manager> managerList = managerService.findAll();
         managerTableModel = new ManagerTableModel(managerList);
+
+        // Initialize table
+        table = new JTable();
         table.setModel(managerTableModel);
         table.setRowHeight(30);
         table.setEnabled(true);
 
+        // append to UI
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(0, 80, 970, 360);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -62,7 +65,7 @@ public class ManagerOpr extends JInternalFrame {
 
         /*** Listeners ***/
 
-        refreshBtn.addActionListener(e -> loadTable());
+        refreshBtn.addActionListener(e -> refreshData());
 
         newManagerBtn.addActionListener(e -> new NewManagerDialog());
 
@@ -76,7 +79,8 @@ public class ManagerOpr extends JInternalFrame {
                 } else {
                     Manager m = managerTableModel.getObjectByRow(r);
                     if (managerService.revoke(m.getManager_id())) {
-
+                        JOptionPane.showMessageDialog(null,"删除成功！");
+                        refreshData();
                     } else {
                         System.err.println("删除管理员错误");
                     }
@@ -87,11 +91,10 @@ public class ManagerOpr extends JInternalFrame {
 
     }
 
-    private void loadTable() {
+    public void refreshData() {
         List<Manager> managerList = managerService.findAll();
         managerTableModel.setDataModel(managerList);
         table.setModel(managerTableModel);
-        table.setRowHeight(30);
-        table.setEnabled(true);
+        table.updateUI();
     }
 }
