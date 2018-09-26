@@ -11,6 +11,7 @@ public class Home extends JFrame {
         this.setBounds(0, 0, 1000, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         appendComponents();
 

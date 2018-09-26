@@ -1,4 +1,6 @@
-package com.zhuoxun.model;
+package com.zhuoxun.view.tablemodel;
+
+import com.zhuoxun.model.Manager;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;

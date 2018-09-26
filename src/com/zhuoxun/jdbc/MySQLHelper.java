@@ -29,7 +29,6 @@ public class MySQLHelper {
         String user = "root";
         String password = "tbu33p6r9";
 
-        System.out.println("create database.");
         return DriverManager.getConnection(url, user, password);
     }
 
