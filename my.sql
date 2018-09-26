@@ -12,14 +12,37 @@ CREATE TABLE Manager(
   PRIMARY KEY (`manager_id`)
 );
 
-CREATE TABLE Product (
-  `product_id` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE Commodity (
+  `commodity_id` INT(11) NOT NULL AUTO_INCREMENT,
   `isbn` VARCHAR(32) NOT NULL,
   `name` VARCHAR(32) NOT NULL,
-  `sale_price` DECIMAL(17, 2) NOT NULL ,
+  `purchase_price` DECIMAL(17, 2),
   `unit` VARCHAR(32),
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`commodity_id`)
 );
+
+CREATE TABLE Vendor (
+  `vendor_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(32),
+  `postal_code` DATETIME,
+  `contact` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(32),
+  `note` INT(11),
+  `mobile` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`vendor_id`)
+)
+
+CREATE TABLE Purchase (
+  --purchase_id
+  `manager_id` INT(11) NOT NULL,
+  --quantity
+  --total_price
+  --date
+)
+
+
+
 
 INSERT INTO Manager (`username`, `password`, `mobile`)
 VALUE ('Dawson', 123321, 13022253334);

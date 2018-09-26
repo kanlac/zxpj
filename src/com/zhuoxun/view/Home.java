@@ -1,7 +1,9 @@
 package com.zhuoxun.view;
 
+import com.zhuoxun.view.panel.CommodityPanel;
 import com.zhuoxun.view.panel.ControlPanel;
 import com.zhuoxun.view.panel.PurchasePanel;
+import com.zhuoxun.view.panel.SalePanel;
 
 import javax.swing.*;
 
@@ -19,9 +21,11 @@ public class Home extends JFrame {
     }
 
     private void appendComponents() {
-        // append tabs
+        // Append tabs
         JTabbedPane pane = new JTabbedPane();
+        pane.add(new CommodityPanel(), "商品管理");
         pane.add(new PurchasePanel(), "采购管理"); // constraints -> pane name
+        pane.add(new SalePanel(), "销售管理");
         pane.add(new ControlPanel(), "系统控制");
         this.add(pane);
     }

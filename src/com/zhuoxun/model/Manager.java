@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Manager implements Serializable {
 
-    private int manager_id;
+    private Integer manager_id;
     private String username;
     private String password;
     private String mobile;
     private String email;
     private String note;
-    private int status; // 0 表示正常，-1 表示锁定
+    private Integer status; // 0 表示正常，-1 表示锁定
 
     @Override
     public String toString() {
