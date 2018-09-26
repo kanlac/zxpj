@@ -18,7 +18,7 @@ public class ManagerOpr extends JInternalFrame {
         this.setTitle("管理员管理");
         this.setBounds(0, 50, 800, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setClosable(true);
+        this.setClosable(false);
         this.setResizable(false);
 
         appendComponent();
@@ -27,6 +27,20 @@ public class ManagerOpr extends JInternalFrame {
     }
 
     private void appendComponent() {
+
+        /*** Components ***/
+
+        JButton newManagerBtn = new JButton("添加");
+        newManagerBtn.setBounds(20, 0, 100, 30);
+        this.add(newManagerBtn);
+
+        JButton revokeManagerBtn = new JButton("删除");
+        revokeManagerBtn.setBounds(20, 0, 100, 30);
+        this.add(revokeManagerBtn);
+
+        JButton changePwBtn = new JButton("更改密码");
+        changePwBtn.setBounds(20, 0, 100, 30);
+        this.add(changePwBtn);
 
         // Initialize table
         List<Manager> managerList = managerService.findAll();
@@ -41,6 +55,12 @@ public class ManagerOpr extends JInternalFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getViewport().add(table);
         this.getContentPane().add(scrollPane);
+
+        /*** Listeners ***/
+
+        newManagerBtn.addActionListener(e -> {
+            new NewManagerDialog();
+        });
 
     }
 }

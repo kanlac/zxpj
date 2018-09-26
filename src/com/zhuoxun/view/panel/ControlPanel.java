@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel {
 
         /*** Components ***/
 
-        JButton operateBtn = new JButton("操作员管理");
+        JButton operateBtn = new JButton("管理员管理");
         operateBtn.setBounds(20, 10, 100, 30);
         this.add(operateBtn);
 
