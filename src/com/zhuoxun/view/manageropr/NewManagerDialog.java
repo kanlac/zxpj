@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class NewManagerDialog extends JFrame {
 
-    ManagerService managerService = new ManagerServiceImpl();
+    private ManagerService managerService = new ManagerServiceImpl();
 
     public NewManagerDialog() {
         this.setTitle("添加管理员");
@@ -90,7 +90,6 @@ public class NewManagerDialog extends JFrame {
             else m.setStatus(1);
 
             if (managerService.append(m)) {
-
                 NewManagerDialog.this.dispose();
                 new ManagerOpr();
             } else {

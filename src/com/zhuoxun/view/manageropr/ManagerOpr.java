@@ -56,7 +56,7 @@ public class ManagerOpr extends JInternalFrame {
         table.setRowHeight(30);
         table.setEnabled(true);
 
-        // append to UI
+        // Append to UI
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(0, 80, 970, 360);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
