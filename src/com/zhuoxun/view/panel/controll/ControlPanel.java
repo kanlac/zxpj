@@ -1,6 +1,6 @@
-package com.zhuoxun.view.panel;
+package com.zhuoxun.view.panel.controll;
 
-import com.zhuoxun.view.manageropr.ManagerOpr;
+import com.zhuoxun.view.panel.controll.manageropr.ManagerOpr;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;

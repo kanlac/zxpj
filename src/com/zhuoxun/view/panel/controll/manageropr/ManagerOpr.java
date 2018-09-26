@@ -1,4 +1,4 @@
-package com.zhuoxun.view.manageropr;
+package com.zhuoxun.view.panel.controll.manageropr;
 
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.tablemodel.ManagerTableModel;
