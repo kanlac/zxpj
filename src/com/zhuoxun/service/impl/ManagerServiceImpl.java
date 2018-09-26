@@ -73,4 +73,21 @@ public class ManagerServiceImpl implements ManagerService {
 
         return rows != 0;
     }
+
+    @Override
+    public boolean revoke(int id) {
+        qr = new QueryRunner();
+        sql = "DELETE FROM Manager WHERE manager_id = ?";
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, sql, id);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
+    }
 }

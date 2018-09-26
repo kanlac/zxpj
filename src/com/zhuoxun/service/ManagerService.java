@@ -11,4 +11,6 @@ public interface ManagerService {
     Manager findByUsername(String username);
 
     boolean append(Manager m);
+
+    boolean revoke(int id);
 }

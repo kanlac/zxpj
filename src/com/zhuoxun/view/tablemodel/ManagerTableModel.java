@@ -10,28 +10,18 @@ public class ManagerTableModel extends AbstractTableModel {
     private String[] head = { "编号", "登录名", "密码", "邮箱", "联系电话", "状态" };
     private List<Manager> rows;
 
-    /*** Constructor ***/
-
     public ManagerTableModel(List<Manager> rows) {
         this.rows = rows;
-        fireTableRowsInserted(rows.size(), rows.size());
     }
-
-    /*** Alter data ***/
 
     public void setDataModel(List<Manager> rows) {
         this.rows.clear();
-        for (Manager m : rows) {
-            this.append(m);
-        }
+        this.rows = rows;
     }
 
-    private void append(Manager entity) {
-        int rowCnt = rows.size();
-        rows.add(entity);
-        fireTableRowsInserted(rowCnt, rowCnt); // live update table
+    public Manager getObjectByRow(int row) {
+        return rows.get(row);
     }
-
 
     /*** Override methods ***/
 

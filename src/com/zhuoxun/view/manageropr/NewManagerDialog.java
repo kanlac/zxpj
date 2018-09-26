@@ -64,7 +64,7 @@ public class NewManagerDialog extends JFrame {
         JRadioButton tRadioBtn = new JRadioButton("正常");
         tRadioBtn.setBounds(150, 180, 130, 30);
         tRadioBtn.setSelected(true);
-        JRadioButton fRadioBtn = new JRadioButton("锁常");
+        JRadioButton fRadioBtn = new JRadioButton("锁定");
         fRadioBtn.setBounds(280, 180, 130, 30);
 
         ButtonGroup btnGroup = new ButtonGroup();
@@ -86,10 +86,11 @@ public class NewManagerDialog extends JFrame {
             m.setPassword(String.valueOf(passwordField.getPassword()));
             m.setMobile(mobileField.getText());
             m.setEmail(emailField.getText());
-            if (tRadioBtn.isSelected()) m.setStatus(1);
-            else m.setStatus(0);
+            if (tRadioBtn.isSelected()) m.setStatus(0);
+            else m.setStatus(1);
 
             if (managerService.append(m)) {
+
                 NewManagerDialog.this.dispose();
                 new ManagerOpr();
             } else {

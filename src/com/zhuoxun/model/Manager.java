@@ -12,6 +12,11 @@ public class Manager implements Serializable {
     private String note;
     private int status; // 0 表示正常，-1 表示锁定
 
+    @Override
+    public String toString() {
+        return "---\n[Obj] Manager \nid: " + manager_id + "\nusername: " + username + "\n---";
+    }
+
     /*** Setters and getters ***/
 
     public int getManager_id() {

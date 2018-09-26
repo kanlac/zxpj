@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ManagerOpr extends JInternalFrame {
 
-    ManagerService managerService = new ManagerServiceImpl();
-    JTable table;
-    ManagerTableModel managerTableModel;
+    private ManagerService managerService = new ManagerServiceImpl();
+    private JTable table;
+    private ManagerTableModel managerTableModel;
 
     public ManagerOpr() {
         this.setTitle("管理员管理");
@@ -30,21 +30,25 @@ public class ManagerOpr extends JInternalFrame {
 
         /*** Components ***/
 
+        JButton refreshBtn = new JButton("刷新");
+        refreshBtn.setBounds(20, 50, 100, 30);
+        this.add(refreshBtn);
+
         JButton newManagerBtn = new JButton("添加");
         newManagerBtn.setBounds(20, 0, 100, 30);
         this.add(newManagerBtn);
 
         JButton revokeManagerBtn = new JButton("删除");
-        revokeManagerBtn.setBounds(20, 0, 100, 30);
+        revokeManagerBtn.setBounds(130, 0, 100, 30);
         this.add(revokeManagerBtn);
 
         JButton changePwBtn = new JButton("更改密码");
-        changePwBtn.setBounds(20, 0, 100, 30);
+        changePwBtn.setBounds(240, 0, 100, 30);
         this.add(changePwBtn);
 
         // Initialize table
-        List<Manager> managerList = managerService.findAll();
         table = new JTable();
+        List<Manager> managerList = managerService.findAll();
         managerTableModel = new ManagerTableModel(managerList);
         table.setModel(managerTableModel);
         table.setRowHeight(30);
@@ -58,9 +62,36 @@ public class ManagerOpr extends JInternalFrame {
 
         /*** Listeners ***/
 
-        newManagerBtn.addActionListener(e -> {
-            new NewManagerDialog();
+        refreshBtn.addActionListener(e -> loadTable());
+
+        newManagerBtn.addActionListener(e -> new NewManagerDialog());
+
+        revokeManagerBtn.addActionListener(e -> {
+            int result = JOptionPane.showConfirmDialog(null, "确认删除？", "管理员删除", JOptionPane.YES_OPTION);
+            if (result == 0) {
+                // confirm deletion
+                int r = table.getSelectedRow();
+                if (r < 0) {
+                    JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
+                } else {
+                    Manager m = managerTableModel.getObjectByRow(r);
+                    if (managerService.revoke(m.getManager_id())) {
+
+                    } else {
+                        System.err.println("删除管理员错误");
+                    }
+                }
+
+            }
         });
 
+    }
+
+    private void loadTable() {
+        List<Manager> managerList = managerService.findAll();
+        managerTableModel.setDataModel(managerList);
+        table.setModel(managerTableModel);
+        table.setRowHeight(30);
+        table.setEnabled(true);
     }
 }
