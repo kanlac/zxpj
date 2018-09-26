@@ -25,13 +25,12 @@ CREATE TABLE Vendor (
   `vendor_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `address` VARCHAR(32),
-  `postal_code` DATETIME,
-  `contact` VARCHAR(45) NOT NULL,
+  `postal_code` VARCHAR(6),
   `email` VARCHAR(32),
   `note` INT(11),
   `mobile` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`vendor_id`)
-)
+);
 
 CREATE TABLE Purchase (
   --purchase_id

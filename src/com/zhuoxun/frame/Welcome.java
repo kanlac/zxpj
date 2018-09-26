@@ -1,4 +1,4 @@
-package com.zhuoxun.view;
+package com.zhuoxun.frame;
 
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.service.ManagerService;

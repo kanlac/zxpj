@@ -1,4 +1,4 @@
-package com.zhuoxun.view.panel.controll.manageropr;
+package com.zhuoxun.frame.panel.controll.manageropr;
 
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.service.ManagerService;
@@ -89,7 +89,7 @@ public class NewManagerDialog extends JFrame {
             if (tRadioBtn.isSelected()) m.setStatus(0);
             else m.setStatus(1);
 
-            if (managerService.append(m)) {
+            if (managerService.add(m)) {
                 NewManagerDialog.this.dispose();
                 new ManagerOpr();
             } else {

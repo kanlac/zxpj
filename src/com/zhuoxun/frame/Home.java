@@ -1,9 +1,9 @@
-package com.zhuoxun.view;
+package com.zhuoxun.frame;
 
-import com.zhuoxun.view.panel.commodity.CommodityPanel;
-import com.zhuoxun.view.panel.controll.ControlPanel;
-import com.zhuoxun.view.panel.purchase.PurchasePanel;
-import com.zhuoxun.view.panel.sale.SalePanel;
+import com.zhuoxun.frame.panel.commodity.CommodityPanel;
+import com.zhuoxun.frame.panel.controll.ControlPanel;
+import com.zhuoxun.frame.panel.purchase.PurchasePanel;
+import com.zhuoxun.frame.panel.sale.SalePanel;
 
 import javax.swing.*;
 

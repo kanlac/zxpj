@@ -1,7 +1,7 @@
-package com.zhuoxun.view.panel.controll.manageropr;
+package com.zhuoxun.frame.panel.controll.manageropr;
 
 import com.zhuoxun.model.Manager;
-import com.zhuoxun.tablemodel.ManagerTableModel;
+import com.zhuoxun.model.table.ManagerTableModel;
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
 

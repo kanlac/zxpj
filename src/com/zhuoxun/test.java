@@ -2,8 +2,7 @@ package com.zhuoxun;
 
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
-import com.zhuoxun.view.Home;
-import com.zhuoxun.view.Welcome;
+import com.zhuoxun.frame.Home;
 
 public class test {
     public static void main(String[] args) {

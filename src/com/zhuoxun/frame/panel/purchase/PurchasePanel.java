@@ -1,4 +1,4 @@
-package com.zhuoxun.view.panel.purchase;
+package com.zhuoxun.frame.panel.purchase;
 
 import javax.swing.*;
 

@@ -11,6 +11,8 @@ public class Commodity implements Serializable {
     private BigDecimal purchase_price;
     private String unit;
 
+    /*** Setters and getters ***/
+
     public Integer getCommodity_id() {
         return commodity_id;
     }
