@@ -6,6 +6,8 @@ import com.zhuoxun.service.impl.ManagerServiceImpl;
 
 import javax.swing.*;
 
+import static com.zhuoxun.frame.Home.createAndShowGUI;
+
 public class Welcome extends JFrame {
     public static Manager manager = null;
 
@@ -68,7 +70,12 @@ public class Welcome extends JFrame {
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
-                new Home();
+                javax.swing.SwingUtilities.invokeLater((new Runnable() {
+                    @Override
+                    public void run() {
+                        createAndShowGUI();
+                    }
+                }));
                 Welcome.this.dispose(); // clear resource
             }
         });

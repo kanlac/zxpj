@@ -117,6 +117,15 @@ public class Home extends JFrame implements ActionListener {
         }
     }
 
+    public static void createAndShowGUI() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
+        Home frame = new Home();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setVisible(true);
+    }
+
     /*** Actions ***/
 
     protected void quit() {

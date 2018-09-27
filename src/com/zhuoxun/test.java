@@ -1,5 +1,6 @@
 package com.zhuoxun;
 
+import com.zhuoxun.frame.Welcome;
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
 import com.zhuoxun.frame.Home;
@@ -9,22 +10,17 @@ import javax.swing.*;
 public class test {
     public static void main(String[] args) {
 
-//        Welcome l = new Welcome();
+        /*** 1. run from start ***/
 
-        javax.swing.SwingUtilities.invokeLater((new Runnable() {
-            @Override
-            public void run() {
-                createAndShowGUI();
-            }
-        }));
-    }
+        Welcome l = new Welcome();
 
-    private static void createAndShowGUI() {
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        /*** 2. run directly to Home view ***/
 
-        Home frame = new Home();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setVisible(true);
+//        javax.swing.SwingUtilities.invokeLater((new Runnable() {
+//            @Override
+//            public void run() {
+//                createAndShowGUI();
+//            }
+//        }));
     }
 }
