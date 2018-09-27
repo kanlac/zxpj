@@ -1,4 +1,4 @@
-package com.zhuoxun.frame.panel.controll.manageropr;
+package com.zhuoxun.frame.internal.dialog;
 
 import com.zhuoxun.frame.internal.ManagerOpr;
 import com.zhuoxun.model.Manager;
