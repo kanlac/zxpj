@@ -1,51 +1,27 @@
 package com.zhuoxun.frame;
 
 import com.zhuoxun.frame.internal.CommodityOpr;
-import com.zhuoxun.frame.panel.commodity.CommodityPanel;
-import com.zhuoxun.frame.panel.controll.ControlPanel;
 import com.zhuoxun.frame.internal.ManagerOpr;
-import com.zhuoxun.frame.panel.purchase.PurchasePanel;
-import com.zhuoxun.frame.panel.sale.SalePanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class Home extends JFrame implements ActionListener {
-    JDesktopPane desktopPane;
-
-    // deprecated
-//    public Home() {
-//        this.setTitle("进销存管理 - 主界面");
-//        this.setBounds(0, 0, 1000, 600);
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.setLocationRelativeTo(null);
-//        this.setResizable(false);
-//
-////        appendComponents();
-//
-//        this.setVisible(true);
-//    }
+    JDesktopPane desktop;
 
     public Home() {
-        super("进销存管理 - 主界面");
+        this.setTitle("进销存管理");
+        this.setBounds(0, 0, 600, 500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null); // center
 
-        // Make the big window be indented x pixels from each edge
-        // of the screen.
-        int inset = 160;
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(inset, inset,screenSize.width  - inset*2,screenSize.height - inset*2);
+        desktop = new JDesktopPane(); //a specialized layered pane
+        //createDefaultInternalFrame();
 
-        // Set up the GUI.
-        desktopPane = new JDesktopPane(); //a specialized layered pane
-//        createDefaultInternalFrame(); //create first "window"
-        setContentPane(desktopPane);
+        setContentPane(desktop);
         setJMenuBar(createMenuBar());
-
-        // Make dragging a little faster but perhaps uglier.
-        desktopPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
     }
 
     private JMenuBar createMenuBar() {
@@ -131,7 +107,7 @@ public class Home extends JFrame implements ActionListener {
         // set default frame to ManagerOpr
         ManagerOpr defaultFrame = new ManagerOpr();
         defaultFrame.setVisible(true);
-        desktopPane.add(defaultFrame);
+        desktop.add(defaultFrame);
 
         // ??
         try {
@@ -141,17 +117,6 @@ public class Home extends JFrame implements ActionListener {
         }
     }
 
-    // deprecated
-    private void appendComponents() {
-        // Append tabs
-        JTabbedPane pane = new JTabbedPane();
-        pane.add(new CommodityPanel(), "商品管理");
-        pane.add(new PurchasePanel(), "采购管理"); // constraints -> pane name
-        pane.add(new SalePanel(), "销售管理");
-        pane.add(new ControlPanel(), "系统控制");
-        this.add(pane);
-    }
-
     /*** Actions ***/
 
     protected void quit() {
@@ -159,12 +124,11 @@ public class Home extends JFrame implements ActionListener {
     }
 
     protected void displayCommodityOpr() {
-        System.out.println("displayCommodityOpr...");
-        desktopPane.removeAll();
+        desktop.removeAll();
 
         CommodityOpr commodityOpr = new CommodityOpr();
         commodityOpr.setVisible(true);
-        desktopPane.add(commodityOpr);
+        desktop.add(commodityOpr);
 
         try {
             commodityOpr.setSelected(true);
@@ -174,11 +138,11 @@ public class Home extends JFrame implements ActionListener {
     }
 
     protected void displayManagerOpr() {
-        desktopPane.removeAll();
+        desktop.removeAll();
 
         ManagerOpr managerOpr = new ManagerOpr();
         managerOpr.setVisible(true);
-        desktopPane.add(managerOpr);
+        desktop.add(managerOpr);
 
         // ??
         try {

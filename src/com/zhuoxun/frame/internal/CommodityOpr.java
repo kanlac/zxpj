@@ -1,13 +1,14 @@
 package com.zhuoxun.frame.internal;
 
 import javax.swing.*;
-import java.awt.*;
+
+import static com.zhuoxun.Constants.internalBounds;
 
 public class CommodityOpr extends JInternalFrame {
 
     public CommodityOpr() {
         this.setTitle("商品管理");
-        this.setBounds(0, 50, 950, 400);
+        this.setBounds(internalBounds);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setClosable(false);
         this.setResizable(false);

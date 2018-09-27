@@ -1,5 +1,6 @@
 package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.Constants;
 import com.zhuoxun.frame.panel.controll.manageropr.NewManagerDialog;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.table.ManagerTableModel;
@@ -17,7 +18,7 @@ public class ManagerOpr extends JInternalFrame {
 
     public ManagerOpr() {
         this.setTitle("管理员管理");
-        this.setBounds(0, 50, 950, 400);
+        this.setBounds(Constants.internalBounds);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setClosable(false);
         this.setResizable(false);
