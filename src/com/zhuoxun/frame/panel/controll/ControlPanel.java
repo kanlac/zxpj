@@ -12,6 +12,8 @@ public class ControlPanel extends JPanel {
     public ControlPanel() {
         this.setLayout(null);
         appendComponents();
+        //test
+        new JDesktopPane();
     }
 
     private void appendComponents() {

@@ -6,6 +6,7 @@ import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class ManagerOpr extends JInternalFrame {
@@ -16,7 +17,7 @@ public class ManagerOpr extends JInternalFrame {
 
     public ManagerOpr() {
         this.setTitle("管理员管理");
-        this.setBounds(0, 50, 800, 400);
+        this.setBounds(0, 50, 950, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setClosable(false);
         this.setResizable(false);
@@ -31,19 +32,19 @@ public class ManagerOpr extends JInternalFrame {
         /*** Components ***/
 
         JButton refreshBtn = new JButton("刷新");
-        refreshBtn.setBounds(20, 50, 100, 30);
+        refreshBtn.setBounds(20, 10, 100, 30);
         this.add(refreshBtn);
 
         JButton newManagerBtn = new JButton("添加");
-        newManagerBtn.setBounds(20, 0, 100, 30);
+        newManagerBtn.setBounds(130, 10, 100, 30);
         this.add(newManagerBtn);
 
         JButton revokeManagerBtn = new JButton("删除");
-        revokeManagerBtn.setBounds(130, 0, 100, 30);
+        revokeManagerBtn.setBounds(240, 10, 100, 30);
         this.add(revokeManagerBtn);
 
         JButton changePwBtn = new JButton("更改密码");
-        changePwBtn.setBounds(240, 0, 100, 30);
+        changePwBtn.setBounds(350, 10, 100, 30);
         this.add(changePwBtn);
 
         // Initialize table model
@@ -58,9 +59,10 @@ public class ManagerOpr extends JInternalFrame {
 
         // Append to UI
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(0, 80, 970, 360);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(0, 50, 970, 360);
         scrollPane.getViewport().add(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 10));
         this.getContentPane().add(scrollPane);
 
         /*** Listeners ***/
