@@ -43,6 +43,7 @@ public class CommodityTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex){
         Commodity res=rows.get(rowIndex);
+
         switch (columnIndex){
             case 0:
                 return res.getCommodity_id();

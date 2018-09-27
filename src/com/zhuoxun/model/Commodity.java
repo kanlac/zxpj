@@ -11,6 +11,11 @@ public class Commodity implements Serializable {
     private BigDecimal purchase_price;
     private String unit;
 
+    @Override
+    public String toString() {
+        return "---\n[Obj] Commodity \nid: " + commodity_id + "\nname: " + name + "\n---";
+    }
+
     /*** Setters and getters ***/
 
     public Integer getCommodity_id() {

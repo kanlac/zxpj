@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+@SuppressWarnings("Duplicates")
 public class VendorServiceImpl implements VendorService {
 
     // todo: ref SQLQuery

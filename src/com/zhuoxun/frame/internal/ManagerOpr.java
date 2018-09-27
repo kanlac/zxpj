@@ -49,8 +49,8 @@ public class ManagerOpr extends JInternalFrame {
         this.add(changePwBtn);
 
         // Initialize table model
-        List<Manager> managerList = managerService.findAll();
-        managerTableModel = new ManagerTableModel(managerList);
+        List<Manager> managers = managerService.findAll();
+        managerTableModel = new ManagerTableModel(managers);
 
         // Initialize table
         table = new JTable();
@@ -94,9 +94,9 @@ public class ManagerOpr extends JInternalFrame {
 
     }
 
-    public void refreshData() {
-        List<Manager> managerList = managerService.findAll();
-        managerTableModel.setDataModel(managerList);
+    private void refreshData() {
+        List<Manager> managers = managerService.findAll();
+        managerTableModel.setDataModel(managers);
         table.setModel(managerTableModel);
         table.updateUI();
     }

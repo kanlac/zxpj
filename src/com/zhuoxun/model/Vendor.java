@@ -14,8 +14,6 @@ public class Vendor implements Serializable {
     private String note;
     private String mobile;
 
-
-
     public String getAddress() {
         return address;
     }
@@ -70,5 +68,13 @@ public class Vendor implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Integer getVendor_id() {
+        return vendor_id;
+    }
+
+    public void setVendor_id(Integer vendor_id) {
+        this.vendor_id = vendor_id;
     }
 }
