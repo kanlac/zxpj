@@ -1,5 +1,6 @@
 package com.zhuoxun.frame.panel.controll.manageropr;
 
+import com.zhuoxun.frame.internal.ManagerOpr;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;

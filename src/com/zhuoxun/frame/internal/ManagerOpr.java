@@ -1,12 +1,12 @@
-package com.zhuoxun.frame.panel.controll.manageropr;
+package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.frame.panel.controll.manageropr.NewManagerDialog;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.table.ManagerTableModel;
 import com.zhuoxun.service.ManagerService;
 import com.zhuoxun.service.impl.ManagerServiceImpl;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class ManagerOpr extends JInternalFrame {
@@ -22,12 +22,12 @@ public class ManagerOpr extends JInternalFrame {
         this.setClosable(false);
         this.setResizable(false);
 
-        appendComponent();
+        appendComponents();
 
         this.setVisible(true);
     }
 
-    private void appendComponent() {
+    private void appendComponents() {
 
         /*** Components ***/
 

@@ -1,6 +1,6 @@
 package com.zhuoxun.frame.panel.controll;
 
-import com.zhuoxun.frame.panel.controll.manageropr.ManagerOpr;
+import com.zhuoxun.frame.internal.ManagerOpr;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -12,8 +12,6 @@ public class ControlPanel extends JPanel {
     public ControlPanel() {
         this.setLayout(null);
         appendComponents();
-        //test
-        new JDesktopPane();
     }
 
     private void appendComponents() {
