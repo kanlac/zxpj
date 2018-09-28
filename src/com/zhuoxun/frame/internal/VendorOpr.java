@@ -1,6 +1,7 @@
 package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.frame.internal.dialog.vendor.AddVendorDialog;
+import com.zhuoxun.frame.internal.dialog.vendor.EditVendorDialog;
 import com.zhuoxun.model.Vendor;
 import com.zhuoxun.model.table.VendorTableModel;
 import com.zhuoxun.service.VendorService;
@@ -77,6 +78,37 @@ public class VendorOpr extends JInternalFrame {
         refreshBtn.addActionListener(e -> refreshData());
 
         addBtn.addActionListener(e -> new AddVendorDialog());
+
+        delBtn.addActionListener(e -> {
+
+            int result = JOptionPane.showConfirmDialog(null, "确认删除？", "供应商删除", JOptionPane.YES_OPTION);
+            if (result == 0) {
+                // confirm deletion
+                int r = table.getSelectedRow();
+                if (r < 0) {
+                    JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
+                } else {
+                    Vendor v = vendorTableModel.getObjectByRow(r);
+                    if (vendorService.delete(v.getVendor_id())) {
+                        JOptionPane.showMessageDialog(null,"删除成功！");
+                        refreshData();
+                    } else {
+                        System.err.println("删除供应商错误");
+                    }
+                }
+
+            }
+        });
+
+        editBtn.addActionListener(e -> {
+            int r = table.getSelectedRow();
+            if (r < 0) {
+                JOptionPane.showMessageDialog(null, "请选择要编辑的供应商！");
+            } else {
+                Vendor v = vendorTableModel.getObjectByRow(r);
+                new EditVendorDialog(v);
+            }
+        });
     }
 
     private void refreshData() {

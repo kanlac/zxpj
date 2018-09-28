@@ -1,6 +1,5 @@
 package com.zhuoxun.frame.internal.dialog.commodity;
 
-import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.model.Commodity;
 import com.zhuoxun.service.CommodityService;
 import com.zhuoxun.service.impl.CommodityServiceImpl;
@@ -12,8 +11,8 @@ public class EditCommodityDialog extends JFrame {
 
     private Commodity commodity;
 
-    public EditCommodityDialog(Commodity commodity) {
-        this.commodity = commodity;
+    public EditCommodityDialog(Commodity c) {
+        this.commodity = c;
         this.setTitle("编辑商品");
         this.setBounds(400,200,700,350);
         this.setLayout(null);
