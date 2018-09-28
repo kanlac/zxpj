@@ -12,9 +12,9 @@ import java.util.List;
 
 public class ManagerOpr extends JInternalFrame {
 
-    private ManagerService managerService = new ManagerServiceImpl();
+    private ManagerService service = new ManagerServiceImpl();
     private JTable table;
-    private ManagerTableModel managerTableModel;
+    private ManagerTableModel tableModel;
 
     public ManagerOpr() {
         this.setTitle("管理员管理");
@@ -49,12 +49,12 @@ public class ManagerOpr extends JInternalFrame {
         this.add(changePwBtn);
 
         // Initialize table model
-        List<Manager> managers = managerService.findAll();
-        managerTableModel = new ManagerTableModel(managers);
+        List<Manager> managers = service.findAll();
+        tableModel = new ManagerTableModel(managers);
 
         // Initialize table
         table = new JTable();
-        table.setModel(managerTableModel);
+        table.setModel(tableModel);
         table.setRowHeight(30);
         table.setEnabled(true);
 
@@ -75,29 +75,29 @@ public class ManagerOpr extends JInternalFrame {
         revokeManagerBtn.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(null, "确认删除？", "管理员删除", JOptionPane.YES_OPTION);
             if (result == 0) {
-                // confirm deletion
+                // check row number legitimacy
                 int r = table.getSelectedRow();
-                if (r < 0) {
+                if (r < 0 || r >= service.findAll().size()) {
                     JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
                 } else {
-                    Manager m = managerTableModel.getObjectByRow(r);
-                    if (managerService.revoke(m.getManager_id())) {
+                    // confirm deletion
+                    Manager m = tableModel.getObjectByRow(r);
+                    if (service.revoke(m.getManager_id())) {
                         JOptionPane.showMessageDialog(null,"删除成功！");
                         refreshData();
                     } else {
                         System.err.println("删除管理员错误");
                     }
                 }
-
             }
         });
 
     }
 
     private void refreshData() {
-        List<Manager> managers = managerService.findAll();
-        managerTableModel.setDataModel(managers);
-        table.setModel(managerTableModel);
+        List<Manager> managers = service.findAll();
+        tableModel.setDataModel(managers);
+        table.setModel(tableModel);
         table.updateUI();
     }
 }

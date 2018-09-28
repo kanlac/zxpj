@@ -2,6 +2,7 @@ package com.zhuoxun.frame;
 
 import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.frame.internal.ManagerOpr;
+import com.zhuoxun.frame.internal.PurchaseOpr;
 import com.zhuoxun.frame.internal.VendorOpr;
 
 import javax.swing.*;
@@ -14,9 +15,10 @@ public class Home extends JFrame implements ActionListener {
 
     public Home() {
         this.setTitle("进销存管理");
-        this.setBounds(0, 0, 600, 500);
+        this.setBounds(0, 0, 800, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null); // center
+        this.setResizable(false);
 
         desktop = new JDesktopPane(); //a specialized layered pane
         //createDefaultInternalFrame();
@@ -181,7 +183,17 @@ public class Home extends JFrame implements ActionListener {
     }
 
     protected void displayPurchaseOpr() {
+        desktop.removeAll();
 
+        PurchaseOpr purchaseOpr = new PurchaseOpr();
+        purchaseOpr.setVisible(true);
+        desktop.add(purchaseOpr);
+
+        try {
+            purchaseOpr.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void displayClientOpr() {

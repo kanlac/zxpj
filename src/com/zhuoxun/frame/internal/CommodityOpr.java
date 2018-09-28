@@ -15,9 +15,9 @@ import static com.zhuoxun.Constants.internalBounds;
 
 public class CommodityOpr extends JInternalFrame {
 
-    private CommodityService commodityService = new CommodityServiceImpl();
+    private CommodityService service = new CommodityServiceImpl();
     private JTable table;
-    private CommodityTableModel commodityTableModel;
+    private CommodityTableModel tableModel;
 
     public CommodityOpr() {
         this.setTitle("商品管理");
@@ -55,16 +55,16 @@ public class CommodityOpr extends JInternalFrame {
         nullBtn.setVisible(false);
         this.add(nullBtn);
 
-        List<Commodity> commodities = commodityService.findAll();
+        List<Commodity> commodities = service.findAll();
         if (commodities == null) {
             JOptionPane.showMessageDialog(null, "未获取到商品数据");
         } else {
             // Initialize table model
-            commodityTableModel = new CommodityTableModel(commodities);
+            tableModel = new CommodityTableModel(commodities);
 
             // Initialize table
             table = new JTable();
-            table.setModel(commodityTableModel);
+            table.setModel(tableModel);
             table.setRowHeight(30);
             table.setEnabled(true);
 
@@ -86,13 +86,14 @@ public class CommodityOpr extends JInternalFrame {
         delBtn.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(null, "确认删除？", "商品删除", JOptionPane.YES_OPTION);
             if (result == 0) {
-                // confirm deletion
+                // check row number legitimacy
                 int r = table.getSelectedRow();
-                if (r < 0) {
+                if (r < 0 || r >= service.findAll().size()) {
                     JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
                 } else {
-                    Commodity m = commodityTableModel.getObjectByRow(r);
-                    if (commodityService.delete(m.getCommodity_id())) {
+                    // confirm deletion
+                    Commodity m = tableModel.getObjectByRow(r);
+                    if (service.delete(m.getCommodity_id())) {
                         JOptionPane.showMessageDialog(null,"删除成功！");
                         refreshData();
                     } else {
@@ -108,16 +109,16 @@ public class CommodityOpr extends JInternalFrame {
             if (r < 0) {
                 JOptionPane.showMessageDialog(null, "请选择要编辑的商品！");
             } else {
-                Commodity m = commodityTableModel.getObjectByRow(r);
+                Commodity m = tableModel.getObjectByRow(r);
                 new EditCommodityDialog(m);
             }
         });
     }
 
     private void refreshData() {
-        List<Commodity> commodities = commodityService.findAll();
-        commodityTableModel.setDataModel(commodities);
-        table.setModel(commodityTableModel);
+        List<Commodity> commodities = service.findAll();
+        tableModel.setDataModel(commodities);
+        table.setModel(tableModel);
         table.updateUI();
     }
 }

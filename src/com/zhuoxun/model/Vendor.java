@@ -8,7 +8,6 @@ public class Vendor implements Serializable {
     private Integer vendor_id;
     private String address;
     private String postal_code;
-    private String contact;
     private String email;
     private String name;
     private String note;
@@ -28,14 +27,6 @@ public class Vendor implements Serializable {
 
     public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     public String getEmail() {

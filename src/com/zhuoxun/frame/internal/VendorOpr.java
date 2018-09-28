@@ -15,9 +15,9 @@ import static com.zhuoxun.Constants.internalBounds;
 
 public class VendorOpr extends JInternalFrame {
 
-    private VendorService vendorService = new VendorServiceImpl();
+    private VendorService service = new VendorServiceImpl();
     private JTable table;
-    private VendorTableModel vendorTableModel;
+    private VendorTableModel tableModel;
 
     public VendorOpr() {
         this.setTitle("供应商管理");
@@ -51,16 +51,16 @@ public class VendorOpr extends JInternalFrame {
         editBtn.setBounds(350, 10, 100, 30);
         this.add(editBtn);
 
-        List<Vendor> vendors = vendorService.findAll();
+        List<Vendor> vendors = service.findAll();
         if (vendors == null) {
             JOptionPane.showMessageDialog(null, "未获取到供应商数据");
         } else {
             // Initialize table model
-            vendorTableModel = new VendorTableModel(vendors);
+            tableModel = new VendorTableModel(vendors);
 
             // Initialize table
             table = new JTable();
-            table.setModel(vendorTableModel);
+            table.setModel(tableModel);
             table.setRowHeight(30);
             table.setEnabled(true);
 
@@ -83,13 +83,14 @@ public class VendorOpr extends JInternalFrame {
 
             int result = JOptionPane.showConfirmDialog(null, "确认删除？", "供应商删除", JOptionPane.YES_OPTION);
             if (result == 0) {
-                // confirm deletion
+                // check row number legitimacy
                 int r = table.getSelectedRow();
-                if (r < 0) {
+                if (r < 0 || r >= service.findAll().size()) {
                     JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
                 } else {
-                    Vendor v = vendorTableModel.getObjectByRow(r);
-                    if (vendorService.delete(v.getVendor_id())) {
+                    // confirm deletion
+                    Vendor v = tableModel.getObjectByRow(r);
+                    if (service.delete(v.getVendor_id())) {
                         JOptionPane.showMessageDialog(null,"删除成功！");
                         refreshData();
                     } else {
@@ -105,16 +106,16 @@ public class VendorOpr extends JInternalFrame {
             if (r < 0) {
                 JOptionPane.showMessageDialog(null, "请选择要编辑的供应商！");
             } else {
-                Vendor v = vendorTableModel.getObjectByRow(r);
+                Vendor v = tableModel.getObjectByRow(r);
                 new EditVendorDialog(v);
             }
         });
     }
 
     private void refreshData() {
-        List<Vendor> commodities = vendorService.findAll();
-        vendorTableModel.setDataModel(commodities);
-        table.setModel(vendorTableModel);
+        List<Vendor> commodities = service.findAll();
+        tableModel.setDataModel(commodities);
+        table.setModel(tableModel);
         table.updateUI();
     }
 

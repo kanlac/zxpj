@@ -15,4 +15,6 @@ public interface VendorService {
     boolean add(Vendor v);
 
     boolean delete(Integer id);
+
+    boolean update(Vendor v);
 }

@@ -22,13 +22,12 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public List<Vendor> findAll() {
-        qr = new QueryRunner();
         List<Vendor> r = null;
         ResultSetHandler<List<Vendor>> resultSetHandler = new BeanListHandler<>(Vendor.class);
 
         try {
             conn = MySQLHelper.getConn();
-            r = qr.query(conn, SQLQuery.Vendor.FINDALL, resultSetHandler);
+            r = qr.query(conn, SQLQuery.Vendor.FIND_ALL, resultSetHandler);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +38,6 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public Vendor findByVendorName(String vendorname) {
-        qr = new QueryRunner();
         params = new Object[] { vendorname };
         ResultSetHandler<Vendor> resultSetHandler = new BeanHandler<>(Vendor.class);
         Vendor r = null;
@@ -56,8 +54,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Vendor findById(Integer id){
-        qr = new QueryRunner();
+    public Vendor findById(Integer id) {
         params = new Object[] { id };
         ResultSetHandler<Vendor> resultSetHandler = new BeanHandler<>(Vendor.class);
         Vendor r = null;
@@ -75,8 +72,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public boolean add(Vendor v) {
-        qr = new QueryRunner();
-        params = new Object[] { v.getAddress(),v.getPostal_code(),v.getContact(),v.getEmail(),v.getName(),v.getNote(),v.getMobile() };
+        params = new Object[] { v.getAddress(), v.getPostal_code(), v.getMobile(), v.getEmail(), v.getName(), v.getNote() };
         int rows = 0;
 
         try {
@@ -93,12 +89,27 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public boolean delete(Integer id) {
-        qr = new QueryRunner();
         int rows = 0;
 
         try {
             conn = MySQLHelper.getConn();
             rows = qr.update(conn, SQLQuery.Vendor.DELETE, id);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
+    }
+
+    @Override
+    public boolean update(Vendor v) {
+        params = new Object[] { v.getAddress(),v.getPostal_code(),v.getEmail(),v.getName(),v.getNote(), v.getMobile(), v.getVendor_id()};
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, SQLQuery.Vendor.UPDATE, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class VendorTableModel extends AbstractTableModel {
 
-    private String[] head = { "编号", "地址", "邮编", "邮箱", "名称","备注","电话" };
+    private String[] head = { "编号", "地址", "邮编", "邮箱", "名称", "备注", "电话" };
     private List<Vendor> rows;
 
     public VendorTableModel(List<Vendor> rows) {

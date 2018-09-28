@@ -26,7 +26,6 @@ CREATE TABLE Vendor (
   `name` VARCHAR(45) NOT NULL,
   `address` VARCHAR(32),
   `postal_code` VARCHAR(6),
-  sn VARCHAR(32), -- TAG
   `email` VARCHAR(32),
   `note` INT(11),
   `mobile` VARCHAR(15) NOT NULL,
@@ -36,12 +35,12 @@ CREATE TABLE Vendor (
 
 CREATE TABLE Purchase (
   `purchase_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `sn` VARCHAR(32) NOT NULL, -- 采购业务编号
-  `purchase_date` DATETIME NOT NULL,
+  `number` VARCHAR(32) NOT NULL, -- 采购业务编号
+  `date` DATETIME NOT NULL,
   `cost` DECIMAL(19,2) NOT NULL,
-  `remark` VARCHAR(32) NOT NULL, -- 采购备注
+  `note` VARCHAR(32), -- 采购备注
   `quantity` INT(11) NOT NULL,
-  `status` INT(1) DEFAULT 0 NOT NULL, -- 出库状态
+  `status` INT(1) DEFAULT 0 NOT NULL, -- 未出库为 0
   `commodity_id` INT(11) NOT NULL,
   `vendor_id` INT(11) NOT NULL,
   `manager_id` INT(11) NOT NULL,
@@ -53,11 +52,11 @@ CREATE TABLE Purchase (
 
 CREATE TABLE Sale (
   `sale_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `sn` VARCHAR(32) NOT NULL , -- 销售业务编号
-  `sale_date` DATETIME NOT NULL ,
-  `cost` DECIMAL(19,2) NOT NULL ,
-  `remark` VARCHAR(32) NOT NULL , -- 销售备注
-  `quantity` INT(11) NOT NULL ,
+  `number` VARCHAR(32) NOT NULL, -- 销售业务编号
+  `date` DATETIME NOT NULL,
+  `cost` DECIMAL(19,2) NOT NULL,
+  `note` VARCHAR(32), -- 销售备注
+  `quantity` INT(11) NOT NULL,
   `status` INT(1) DEFAULT 0 NOT NULL , -- 未送达为 0
   `commodity_id` INT(11) NOT NULL,
   `manager_id` INT(11) NOT NULL,
