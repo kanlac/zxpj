@@ -1,4 +1,4 @@
-package com.zhuoxun.frame.internal.dialog;
+package com.zhuoxun.frame.internal.dialog.commodity;
 
 import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.model.Commodity;
@@ -32,8 +32,9 @@ public class AddCommodityDialog extends JFrame {
 
         JTextField isbnField = new JTextField();
         UUID id = UUID.randomUUID();
+        String isbn = id.toString().replaceAll("[^0-9]", "");
         isbnField.setBounds(130,60,200,30);
-        isbnField.setText(id.toString());
+        isbnField.setText(isbn);
         this.add(isbnField);
 
         JLabel nameLabel = new JLabel("商品名称：");
@@ -60,22 +61,26 @@ public class AddCommodityDialog extends JFrame {
         unitField.setBounds(450,120,200,30);
         this.add(unitField);
 
-        JButton saveBtn = new JButton("提交");
-        saveBtn.setBounds(280,230,100,30);
-        this.add(saveBtn);
+        JButton submitBtn = new JButton("提交");
+        submitBtn.setBounds(280,230,100,30);
+        this.add(submitBtn);
 
-        saveBtn.addActionListener(e -> {
-            Commodity commodity=new Commodity();
+        /*** Listeners ***/
+
+        submitBtn.addActionListener(e -> {
+
+            Commodity commodity = new Commodity();
             commodity.setIsbn(isbnField.getText());
             commodity.setName(nameField.getText());
             commodity.setPurchase_price(new BigDecimal(priceField.getText()));
             commodity.setUnit(unitField.getText());
 
-            CommodityService commodityService=new CommodityServiceImpl();
-            commodityService.save(commodity);
-
-            new CommodityOpr();
-            AddCommodityDialog.this.dispose();
+            CommodityService commodityService = new CommodityServiceImpl();
+            if (commodityService.save(commodity)) {
+                AddCommodityDialog.this.dispose();
+            } else {
+                System.err.println("添加商品错误");
+            }
         });
 
 

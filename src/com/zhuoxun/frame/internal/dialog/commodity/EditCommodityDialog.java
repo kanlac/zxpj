@@ -1,4 +1,4 @@
-package com.zhuoxun.frame.internal.dialog;
+package com.zhuoxun.frame.internal.dialog.commodity;
 
 import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.model.Commodity;
@@ -6,8 +6,7 @@ import com.zhuoxun.service.CommodityService;
 import com.zhuoxun.service.impl.CommodityServiceImpl;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class EditCommodityDialog extends JFrame {
 
@@ -72,14 +71,23 @@ public class EditCommodityDialog extends JFrame {
 
         submitBtn.addActionListener(e -> {
 
-            commodity.setIsbn(isbnField.getText());
-            commodity.setName(nameField.getText());
-            commodity.setUnit(unitField.getText());
+            // check legitimacy
+            if (purchasePriceField.getText().contains("[^0-9]")) {
+                JOptionPane.showMessageDialog(null, "请检查您填写的单价");
+            } else {
+                // commit update
+                commodity.setIsbn(isbnField.getText());
+                commodity.setName(nameField.getText());
+                commodity.setPurchase_price(new BigDecimal(purchasePriceField.getText()));
+                commodity.setUnit(unitField.getText());
 
-            CommodityService commodityService = new CommodityServiceImpl();
-            commodityService.update(commodity);
-            new CommodityOpr();
-            EditCommodityDialog.this.dispose();
+                CommodityService commodityService = new CommodityServiceImpl();
+                commodityService.update(commodity);
+
+                EditCommodityDialog.this.dispose();
+            }
+
+
 
         });
 

@@ -1,4 +1,4 @@
-package com.zhuoxun.frame.internal.dialog;
+package com.zhuoxun.frame.internal.dialog.manager;
 
 import com.zhuoxun.frame.internal.ManagerOpr;
 import com.zhuoxun.model.Manager;
@@ -92,7 +92,6 @@ public class NewManagerDialog extends JFrame {
 
             if (managerService.add(m)) {
                 NewManagerDialog.this.dispose();
-                new ManagerOpr();
             } else {
                 System.err.println("添加管理员错误");
             }

@@ -1,7 +1,7 @@
 package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.Constants;
-import com.zhuoxun.frame.internal.dialog.NewManagerDialog;
+import com.zhuoxun.frame.internal.dialog.manager.NewManagerDialog;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.table.ManagerTableModel;
 import com.zhuoxun.service.ManagerService;

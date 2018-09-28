@@ -23,17 +23,49 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public boolean save(Commodity c) {
-        return false;
+        params = new Object[] { c.getIsbn(), c.getName(), c.getPurchase_price(), c.getUnit() };
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, SQLQuery.Commodity.INSERT, params);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
     }
 
     @Override
     public boolean update(Commodity c) {
-        return false;
+        params = new Object[] { c.getIsbn(), c.getName(), c.getPurchase_price(), c.getUnit(), c.getCommodity_id() };
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, SQLQuery.Commodity.UPDATE, params);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, SQLQuery.Commodity.DELETE, id);
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
     }
 
     @Override
@@ -44,12 +76,6 @@ public class CommodityServiceImpl implements CommodityService {
         try {
             conn = MySQLHelper.getConn();
             r = qr.query(conn, SQLQuery.Commodity.FINDALL, resultSetHandler);
-            // test
-            if (r == null) System.out.println("is null");
-            else System.out.println("not null");
-            for (Commodity c : r) {
-                System.out.println("c = " + c);
-            }
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

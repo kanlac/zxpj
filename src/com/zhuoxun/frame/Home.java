@@ -2,6 +2,7 @@ package com.zhuoxun.frame;
 
 import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.frame.internal.ManagerOpr;
+import com.zhuoxun.frame.internal.VendorOpr;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,13 +61,15 @@ public class Home extends JFrame implements ActionListener {
 
         /** 2.2.1 **/
         JMenuItem vendorItem = new JMenuItem("供应商");
-        vendorItem.setActionCommand("vendorOpr");
+        vendorItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.SHIFT_MASK));
+        vendorItem.setActionCommand("displayVendorOpr");
         vendorItem.addActionListener(this);
         purchaseSubMenu.add(vendorItem);
 
         /** 2.2.2 **/
         JMenuItem purchaseItem = new JMenuItem("采购订单");
-        purchaseItem.setActionCommand("purchaseOpr");
+        purchaseItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.SHIFT_MASK));
+        purchaseItem.setActionCommand("displayPurchaseOpr");
         purchaseItem.addActionListener(this);
         purchaseSubMenu.add(purchaseItem);
 
@@ -78,13 +81,15 @@ public class Home extends JFrame implements ActionListener {
 
         /** 2.3.1 **/
         JMenuItem saleItem = new JMenuItem("销售订单");
-        saleItem.setActionCommand("saleOpr");
+        saleItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.SHIFT_MASK));
+        saleItem.setActionCommand("displaySaleOpr");
         saleItem.addActionListener(this);
         saleSubMenu.add(saleItem);
 
         /** 2.3.2 **/
         JMenuItem clientItem = new JMenuItem("客户管理");
-        clientItem.setActionCommand("clientOpr");
+        clientItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.SHIFT_MASK));
+        clientItem.setActionCommand("displayClientOpr");
         clientItem.addActionListener(this);
         saleSubMenu.add(clientItem);
 
@@ -161,6 +166,32 @@ public class Home extends JFrame implements ActionListener {
         }
     }
 
+    protected void displayVendorOpr() {
+        desktop.removeAll();
+
+        VendorOpr vendorOpr = new VendorOpr();
+        vendorOpr.setVisible(true);
+        desktop.add(vendorOpr);
+
+        try {
+            vendorOpr.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void displayPurchaseOpr() {
+
+    }
+
+    protected void displayClientOpr() {
+
+    }
+
+    protected void displaySaleOpr() {
+
+    }
+
     /*** Override Listener ***/
 
     @Override
@@ -171,6 +202,14 @@ public class Home extends JFrame implements ActionListener {
             displayManagerOpr();
         } else if ("displayCommodityOpr".equals(e.getActionCommand())) {
             displayCommodityOpr();
+        } else if ("displayVendorOpr".equals(e.getActionCommand())) {
+            displayVendorOpr();
+        } else if ("displayPurchaseOpr".equals(e.getActionCommand())) {
+            displayPurchaseOpr();
+        } else if ("displayClientOpr".equals(e.getActionCommand())) {
+            displayClientOpr();
+        } else if ("displaySaleOpr".equals(e.getActionCommand())) {
+            displaySaleOpr();
         } else {
             System.err.println("Unhandled ActionEvent: " + e.getActionCommand());
         }

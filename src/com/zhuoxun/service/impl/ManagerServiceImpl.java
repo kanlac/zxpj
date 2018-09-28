@@ -60,7 +60,7 @@ public class ManagerServiceImpl implements ManagerService {
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, SQLQuery.Manager.ADD, params);
+            rows = qr.update(conn, SQLQuery.Manager.INSERT, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class ManagerServiceImpl implements ManagerService {
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, SQLQuery.Manager.REVOKE, id);
+            rows = qr.update(conn, SQLQuery.Manager.DELETE, id);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

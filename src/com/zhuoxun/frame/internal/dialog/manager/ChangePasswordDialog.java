@@ -1,4 +1,4 @@
-package com.zhuoxun.frame.internal.dialog;
+package com.zhuoxun.frame.internal.dialog.manager;
 
 import javax.swing.*;
 

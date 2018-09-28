@@ -81,7 +81,7 @@ public class VendorServiceImpl implements VendorService {
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, SQLQuery.Vendor.ADD, params);
+            rows = qr.update(conn, SQLQuery.Vendor.INSERT, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

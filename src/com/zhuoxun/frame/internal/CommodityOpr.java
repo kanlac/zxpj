@@ -1,5 +1,7 @@
 package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.frame.internal.dialog.commodity.AddCommodityDialog;
+import com.zhuoxun.frame.internal.dialog.commodity.EditCommodityDialog;
 import com.zhuoxun.model.Commodity;
 import com.zhuoxun.model.table.CommodityTableModel;
 import com.zhuoxun.service.CommodityService;
@@ -53,11 +55,11 @@ public class CommodityOpr extends JInternalFrame {
         nullBtn.setVisible(false);
         this.add(nullBtn);
 
-        // Initialize table model
         List<Commodity> commodities = commodityService.findAll();
         if (commodities == null) {
             JOptionPane.showMessageDialog(null, "未获取到商品数据");
         } else {
+            // Initialize table model
             commodityTableModel = new CommodityTableModel(commodities);
 
             // Initialize table
@@ -77,9 +79,39 @@ public class CommodityOpr extends JInternalFrame {
 
         /*** Listeners ***/
 
-//        delBtn.addActionListener(e -> {
-//
-//        });
+        refreshBtn.addActionListener(e -> refreshData());
+
+        addBtn.addActionListener(e -> new AddCommodityDialog());
+
+        delBtn.addActionListener(e -> {
+            int result = JOptionPane.showConfirmDialog(null, "确认删除？", "商品删除", JOptionPane.YES_OPTION);
+            if (result == 0) {
+                // confirm deletion
+                int r = table.getSelectedRow();
+                if (r < 0) {
+                    JOptionPane.showMessageDialog(null, "请选择要删除的数据！");
+                } else {
+                    Commodity m = commodityTableModel.getObjectByRow(r);
+                    if (commodityService.delete(m.getCommodity_id())) {
+                        JOptionPane.showMessageDialog(null,"删除成功！");
+                        refreshData();
+                    } else {
+                        System.err.println("删除商品错误");
+                    }
+                }
+
+            }
+        });
+
+        editBtn.addActionListener(e -> {
+            int r = table.getSelectedRow();
+            if (r < 0) {
+                JOptionPane.showMessageDialog(null, "请选择要编辑的商品！");
+            } else {
+                Commodity m = commodityTableModel.getObjectByRow(r);
+                new EditCommodityDialog(m);
+            }
+        });
     }
 
     private void refreshData() {
