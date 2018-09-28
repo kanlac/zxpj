@@ -12,7 +12,7 @@ public interface VendorService {
 
     Vendor findByVendorName(String vendorname);
 
-    boolean append(Vendor v);
+    boolean add(Vendor v);
 
     boolean delete(Integer id);
 }

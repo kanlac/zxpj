@@ -1,6 +1,7 @@
 package com.zhuoxun.service.impl;
 
 import com.zhuoxun.jdbc.MySQLHelper;
+import com.zhuoxun.jdbc.SQLQuery;
 import com.zhuoxun.model.Vendor;
 import com.zhuoxun.service.VendorService;
 import org.apache.commons.dbutils.QueryRunner;
@@ -15,22 +16,19 @@ import java.util.List;
 @SuppressWarnings("Duplicates")
 public class VendorServiceImpl implements VendorService {
 
-    // todo: ref SQLQuery
-    private static String sql;
-    private static Object[] params;
-    private static QueryRunner qr;
-    private static Connection conn;
+    private Object[] params;
+    private QueryRunner qr = new QueryRunner();
+    private Connection conn;
 
     @Override
     public List<Vendor> findAll() {
         qr = new QueryRunner();
-        sql = "SELECT * FROM Vendor";
         List<Vendor> r = null;
         ResultSetHandler<List<Vendor>> resultSetHandler = new BeanListHandler<>(Vendor.class);
 
         try {
             conn = MySQLHelper.getConn();
-            r = qr.query(conn, sql, resultSetHandler);
+            r = qr.query(conn, SQLQuery.Vendor.FINDALL, resultSetHandler);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,14 +40,13 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public Vendor findByVendorName(String vendorname) {
         qr = new QueryRunner();
-        sql = "SELECT * FROM Vendor WHERE username = ?";
         params = new Object[] { vendorname };
         ResultSetHandler<Vendor> resultSetHandler = new BeanHandler<>(Vendor.class);
         Vendor r = null;
 
         try {
             conn = MySQLHelper.getConn();
-            r = qr.query(conn, sql, resultSetHandler, params);
+            r = qr.query(conn, SQLQuery.Vendor.FIND_BY_NAME, resultSetHandler, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,14 +58,13 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public Vendor findById(Integer id){
         qr = new QueryRunner();
-        sql = "SELECT * FROM Vendor WHERE vendor_id = ?";
         params = new Object[] { id };
         ResultSetHandler<Vendor> resultSetHandler = new BeanHandler<>(Vendor.class);
         Vendor r = null;
 
         try{
             conn  = MySQLHelper.getConn();
-            r =  qr.query(conn,sql,resultSetHandler,params);
+            r =  qr.query(conn,SQLQuery.Vendor.FIND_BY_ID,resultSetHandler,params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,15 +74,14 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public boolean append(Vendor v) {
+    public boolean add(Vendor v) {
         qr = new QueryRunner();
-        sql = "INSERT INTO Vendor (`address`, `postal_code`, `contact`, `email`, `name`,`note`,`mobile`) VALUE (?, ?, ?, ?, ?, ?, ?);";
         params = new Object[] { v.getAddress(),v.getPostal_code(),v.getContact(),v.getEmail(),v.getName(),v.getNote(),v.getMobile() };
         int rows = 0;
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, sql, params);
+            rows = qr.update(conn, SQLQuery.Vendor.ADD, params);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,12 +94,11 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public boolean delete(Integer id) {
         qr = new QueryRunner();
-        sql = "DELETE FROM Vendor WHERE vendor_id = ?";
         int rows = 0;
 
         try {
             conn = MySQLHelper.getConn();
-            rows = qr.update(conn, sql, id);
+            rows = qr.update(conn, SQLQuery.Vendor.DELETE, id);
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();
