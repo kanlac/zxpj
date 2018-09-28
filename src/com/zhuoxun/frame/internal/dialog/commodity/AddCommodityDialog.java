@@ -1,6 +1,5 @@
 package com.zhuoxun.frame.internal.dialog.commodity;
 
-import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.model.Commodity;
 import com.zhuoxun.service.CommodityService;
 import com.zhuoxun.service.impl.CommodityServiceImpl;

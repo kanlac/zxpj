@@ -85,4 +85,14 @@ INSERT INTO `Commodity` (`commodity_id`, `isbn`, `name`, `purchase_price`, `unit
 INSERT INTO `Commodity` (`commodity_id`, `isbn`, `name`, `purchase_price`, `unit`) VALUES ('13', '19', '早餐面包', '7', '100克');
 INSERT INTO `Commodity` (`commodity_id`, `isbn`, `name`, `purchase_price`, `unit`) VALUES ('14', '20', '达利小面包', '7', '100克');
 
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('1', '番茄酱', '佛山', '311230', '11@qq.com', '', '13011112222');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('2', '黑胡椒酱', '佛山', '322123', '22@qq.com', '', '13022223333');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('3', '挂面', '佛山', '222222', '33@qq.com', '', '13022224444');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('4', '龙须面', '广东', '333333', '44@qq.com', '', '13055554444');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('5', '意大利细面条', '广东', '222222', '12@qq.com', '', '13044444444');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('6', '意大利螺旋面', '广东', '555555', '13@qq.com', '', '13055554444');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('7', '魔芋面', '湖北', '555444', '14@qq.com', '', '13088887777');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('8', '荞麦面', '湖北', '444444', '15@qq.com', '', '13088887777');
+INSERT INTO `Vendor` (`vendor_id`, `name`, `address`, `postal_code`, `email`, `note`, `mobile`) VALUES ('9', '全麦面', '湖北', '666666', '16@qq.com', '', '13055554444');
+
 SELECT * FROM Commodity;

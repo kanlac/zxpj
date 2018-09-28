@@ -7,7 +7,7 @@ public class Vendor implements Serializable {
 
     private Integer vendor_id;
     private String address;
-    private Date postal_code;
+    private String postal_code;
     private String contact;
     private String email;
     private String name;
@@ -22,11 +22,11 @@ public class Vendor implements Serializable {
         this.address = address;
     }
 
-    public Date getPostal_code() {
+    public String getPostal_code() {
         return postal_code;
     }
 
-    public void setPostal_code(Date postal_code) {
+    public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
     }
 

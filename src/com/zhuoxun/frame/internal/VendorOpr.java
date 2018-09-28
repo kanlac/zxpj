@@ -1,5 +1,6 @@
 package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.frame.internal.dialog.vendor.AddVendorDialog;
 import com.zhuoxun.model.Vendor;
 import com.zhuoxun.model.table.VendorTableModel;
 import com.zhuoxun.service.VendorService;
@@ -70,6 +71,12 @@ public class VendorOpr extends JInternalFrame {
             scrollPane.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 10));
             this.getContentPane().add(scrollPane);
         }
+
+        /*** Listeners ***/
+
+        refreshBtn.addActionListener(e -> refreshData());
+
+        addBtn.addActionListener(e -> new AddVendorDialog());
     }
 
     private void refreshData() {
