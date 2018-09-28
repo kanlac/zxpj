@@ -49,5 +49,7 @@ public class AddVendorDialog extends JFrame {
         JLabel noteLabel = new JLabel("备注：");
 
         JLabel mobileLabel = new JLabel("电话：");
+
+        JButton submitBtn = new JButton("提交");
     }
 }
