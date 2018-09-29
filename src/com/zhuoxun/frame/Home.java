@@ -110,11 +110,6 @@ public class Home extends JFrame implements ActionListener {
         JMenu saleSubMenu = new JMenu("销售管理");
 
         /** 2.3.1 **/
-        JMenuItem saleItem = new JMenuItem("销售订单");
-        saleItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.SHIFT_MASK));
-        saleItem.setActionCommand("displaySaleOpr");
-        saleItem.addActionListener(this);
-        saleSubMenu.add(saleItem);
 
         /** 2.3.2 **/
         JMenuItem clientItem = new JMenuItem("客户管理");
