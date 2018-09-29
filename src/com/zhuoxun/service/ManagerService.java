@@ -14,5 +14,7 @@ public interface ManagerService {
 
     boolean revoke(int id);
 
+    boolean changePwd(Manager m);
+
     List<Manager> Search(String managername);
 }

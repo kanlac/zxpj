@@ -2,6 +2,7 @@ package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.Constants;
 import com.zhuoxun.frame.internal.dialog.SearchDialog;
+import com.zhuoxun.frame.internal.dialog.manager.ChangePasswordDialog;
 import com.zhuoxun.frame.internal.dialog.manager.NewManagerDialog;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.table.ManagerTableModel;
@@ -84,6 +85,10 @@ public class ManagerOpr extends JInternalFrame {
         refreshBtn.addActionListener(e -> refreshData());
 
         newManagerBtn.addActionListener(e -> new NewManagerDialog());
+
+        changePwBtn.addActionListener(e -> {
+            new ChangePasswordDialog();
+        });
 
         revokeManagerBtn.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(null, "确认删除？", "管理员删除", JOptionPane.YES_OPTION);

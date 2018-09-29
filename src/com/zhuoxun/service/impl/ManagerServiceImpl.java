@@ -86,7 +86,6 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public List<Manager> Search(String managername) {
-        qr = new QueryRunner();
         List<Manager> r = null;
         ResultSetHandler<List<Manager>> resultSetHandler = new BeanListHandler<>(Manager.class);
 
@@ -99,5 +98,20 @@ public class ManagerServiceImpl implements ManagerService {
         }
 
         return r;
+    }
+
+    @Override
+    public boolean changePwd (Manager m) {
+        int rows = 0;
+
+        try {
+            conn = MySQLHelper.getConn();
+            rows = qr.update(conn, SQLQuery.Manager.CHANGE_PASSWORD, m.getPassword(), m.getManager_id());
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rows != 0;
     }
 }

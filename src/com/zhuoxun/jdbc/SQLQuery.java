@@ -8,6 +8,7 @@ public class SQLQuery {
         public static final String INSERT = "INSERT INTO Manager (`username`, `password`, `mobile`, `email`, `status`) VALUE (?, ?, ?, ?, ?)";
         public static final String DELETE = "DELETE FROM Manager WHERE manager_id = ?";
         public static final String SEARCH = "SELECT * FROM Manager WHERE username LIKE ?";
+        public static final String CHANGE_PASSWORD = "UPDATE Manager SET password = ? WHERE manager_id = ?";
     }
 
     public class Commodity {
