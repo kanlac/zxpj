@@ -19,7 +19,7 @@ public class Manager implements Serializable {
 
     /*** Setters and getters ***/
 
-    public int getManager_id() {
+    public Integer getManager_id() {
         return manager_id;
     }
 
@@ -43,11 +43,11 @@ public class Manager implements Serializable {
         return note;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setManager_id(int manager_id) {
+    public void setManager_id(Integer manager_id) {
         this.manager_id = manager_id;
     }
 
@@ -71,7 +71,7 @@ public class Manager implements Serializable {
         this.note = note;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

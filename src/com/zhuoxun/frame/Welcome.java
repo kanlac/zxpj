@@ -70,14 +70,18 @@ public class Welcome extends JFrame {
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
-                this.manager = manager;
-                javax.swing.SwingUtilities.invokeLater((new Runnable() {
-                    @Override
-                    public void run() {
-                        createAndShowGUI();
-                    }
-                }));
-                Welcome.this.dispose(); // clear resource
+                if (manager.getStatus().equals(1)) {
+                    JOptionPane.showMessageDialog(null, "用户已锁定");
+                } else {
+                    this.manager = manager;
+                    javax.swing.SwingUtilities.invokeLater((new Runnable() {
+                        @Override
+                        public void run() {
+                            createAndShowGUI();
+                        }
+                    }));
+                    Welcome.this.dispose(); // clear resource
+                }
             }
         });
 
