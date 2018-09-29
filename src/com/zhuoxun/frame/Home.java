@@ -1,11 +1,13 @@
 package com.zhuoxun.frame;
 
+import com.zhuoxun.frame.desktop.MyJDesktop;
 import com.zhuoxun.frame.internal.CommodityOpr;
 import com.zhuoxun.frame.internal.ManagerOpr;
 import com.zhuoxun.frame.internal.PurchaseOpr;
 import com.zhuoxun.frame.internal.VendorOpr;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,8 +22,13 @@ public class Home extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null); // center
         this.setResizable(false);
 
-        desktop = new JDesktopPane(); //a specialized layered pane
+        // test
+        desktop = new MyJDesktop();
+
+//        desktop = new JDesktopPane(); //a specialized layered pane
         //createDefaultInternalFrame();
+
+
 
         this.setContentPane(desktop);
         this.setJMenuBar(createMenuBar());
