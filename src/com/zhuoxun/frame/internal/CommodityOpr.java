@@ -56,7 +56,7 @@ public class CommodityOpr extends JInternalFrame {
         this.add(nullBtn);
 
         List<Commodity> commodities = service.findAll();
-        if (commodities == null) {
+        if (commodities == null || commodities.size() == 0) {
             JOptionPane.showMessageDialog(null, "未获取到商品数据");
         } else {
             // Initialize table model

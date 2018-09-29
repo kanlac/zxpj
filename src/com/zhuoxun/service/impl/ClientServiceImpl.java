@@ -65,12 +65,6 @@ public class ClientServiceImpl implements ClientService {
         try {
             conn = MySQLHelper.getConn();
             r = qr.query(conn, SQLQuery.Client.FIND_ALL, resultSetHandler);
-            // test
-            if (r == null) System.out.println("is null");
-            else System.out.println("not null");
-            for (Client c : r) {
-                System.out.println("c = " + c);
-            }
             MySQLHelper.close(conn);
         } catch (SQLException e) {
             e.printStackTrace();

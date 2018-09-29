@@ -54,7 +54,7 @@ public class ClientOpr extends JInternalFrame {
         this.add(nullBtn);
 
         List<Client> clients = service.findAll();
-        if (clients == null) {
+        if (clients == null || clients.size() == 0) {
             JOptionPane.showMessageDialog(null, "未获取到客户数据");
         } else {
             // Initialize table model

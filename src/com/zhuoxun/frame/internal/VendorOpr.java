@@ -52,7 +52,7 @@ public class VendorOpr extends JInternalFrame {
         this.add(editBtn);
 
         List<Vendor> vendors = service.findAll();
-        if (vendors == null) {
+        if (vendors == null ||vendors.size() == 0) {
             JOptionPane.showMessageDialog(null, "未获取到供应商数据");
         } else {
             // Initialize table model
