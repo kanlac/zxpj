@@ -32,43 +32,43 @@ public class AddPurchaseDialog extends JFrame {
         this.add(vendorIdField);
 
         JLabel commodityIdLabel = new JLabel("商品id");
-        commodityIdLabel.setBounds(70, 40, 80, 30);
+        commodityIdLabel.setBounds(360, 40, 80, 30);
         this.add(commodityIdLabel);
 
         JTextField commodityIdField = new JTextField();
-        commodityIdField.setBounds(120, 40, 200, 30);
+        commodityIdField.setBounds(440, 40, 200, 30);
         this.add(commodityIdField);
 
         JLabel costLabel = new JLabel("总金额");
-        costLabel.setBounds(70, 40, 80, 30);
+        costLabel.setBounds(70, 80, 80, 30);
         this.add(costLabel);
 
         JTextField costField = new JTextField();
-        costField.setBounds(120, 40, 200, 30);
+        costField.setBounds(120, 80, 200, 30);
         this.add(costField);
 
         JLabel noteLabel = new JLabel("采购备注");
-        noteLabel.setBounds(70, 40, 80, 30);
+        noteLabel.setBounds(360, 80, 80, 30);
         this.add(noteLabel);
 
         JTextField noteField = new JTextField();
-        noteField.setBounds(120, 40, 200, 30);
+        noteField.setBounds(440, 80, 200, 30);
         this.add(noteField);
 
         JLabel quantityLabel = new JLabel("数量");
-        quantityLabel.setBounds(70, 40, 80, 30);
+        quantityLabel.setBounds(70, 120, 80, 30);
         this.add(quantityLabel);
 
         JTextField quantityField = new JTextField();
-        quantityField.setBounds(120, 40, 200, 30);
+        quantityField.setBounds(120, 120, 200, 30);
         this.add(quantityField);
 
         JLabel statusLabel = new JLabel("状态");
-        statusLabel.setBounds(70, 40, 80, 30);
+        statusLabel.setBounds(360, 120, 80, 30);
         this.add(statusLabel);
 
         JTextField statusField = new JTextField();
-        statusField.setBounds(120, 40, 200, 30);
+        statusField.setBounds(440, 120, 200, 30);
         this.add(statusField);
 
         JButton submitBtn = new JButton("提交");
