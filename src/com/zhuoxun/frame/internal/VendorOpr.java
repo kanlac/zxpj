@@ -1,5 +1,6 @@
 package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.frame.internal.dialog.SearchDialog;
 import com.zhuoxun.frame.internal.dialog.vendor.AddVendorDialog;
 import com.zhuoxun.frame.internal.dialog.vendor.EditVendorDialog;
 import com.zhuoxun.model.Vendor;
@@ -51,6 +52,14 @@ public class VendorOpr extends JInternalFrame {
         editBtn.setBounds(350, 10, 100, 30);
         this.add(editBtn);
 
+        JTextField searchTxet = new JTextField("请输入名称");
+        searchTxet.setBounds(520,10,160,30);
+        this.add(searchTxet);
+
+        JButton searchBtn = new JButton("搜索");
+        searchBtn.setBounds(690,10,100,30);
+        this.add(searchBtn);
+
         List<Vendor> vendors = service.findAll();
         if (vendors == null ||vendors.size() == 0) {
             JOptionPane.showMessageDialog(null, "未获取到供应商数据");
@@ -74,6 +83,10 @@ public class VendorOpr extends JInternalFrame {
         }
 
         /*** Listeners ***/
+
+        searchBtn.addActionListener(e -> {
+            new SearchDialog(searchTxet.getText(),1);
+        });
 
         refreshBtn.addActionListener(e -> refreshData());
 

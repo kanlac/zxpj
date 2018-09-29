@@ -13,4 +13,6 @@ public interface ManagerService {
     boolean add(Manager m);
 
     boolean revoke(int id);
+
+    List<Manager> Search(String managername);
 }

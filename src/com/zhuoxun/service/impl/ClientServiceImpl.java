@@ -77,4 +77,21 @@ public class ClientServiceImpl implements ClientService {
     public Client findById(int id) {
         return null;
     }
+
+    @Override
+    public List<Client> Search(String clientname) {
+        qr = new QueryRunner();
+        List<Client> r = null;
+        ResultSetHandler<List<Client>> resultSetHandler = new BeanListHandler<>(Client.class);
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, SQLQuery.Client.SEARCH, resultSetHandler,"%"+clientname+"%");
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
 }

@@ -15,4 +15,6 @@ public interface CommodityService {
     List<Commodity> findAll();
 
     Commodity findById(int id);
+
+    List<Commodity> Search(String commodityname);
 }

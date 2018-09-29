@@ -1,6 +1,7 @@
 package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.Constants;
+import com.zhuoxun.frame.internal.dialog.SearchDialog;
 import com.zhuoxun.frame.internal.dialog.client.EditClientDialog;
 import com.zhuoxun.frame.internal.dialog.client.NewClientDialog;
 import com.zhuoxun.model.Client;
@@ -50,6 +51,14 @@ public class ClientOpr extends JInternalFrame {
         editBtn.setBounds(350, 10, 100, 30);
         this.add(editBtn);
 
+        JTextField searchTxet = new JTextField("请输入名称");
+        searchTxet.setBounds(520,10,160,30);
+        this.add(searchTxet);
+
+        JButton searchBtn = new JButton("搜索");
+        searchBtn.setBounds(690,10,100,30);
+        this.add(searchBtn);
+
         JButton nullBtn = new JButton("");
         nullBtn.setVisible(false);
         this.add(nullBtn);
@@ -77,6 +86,10 @@ public class ClientOpr extends JInternalFrame {
         }
 
         /*** Listeners ***/
+
+        searchBtn.addActionListener(e -> {
+            new SearchDialog(searchTxet.getText(),5);
+        });
 
         refreshBtn.addActionListener(e -> refreshData());
 

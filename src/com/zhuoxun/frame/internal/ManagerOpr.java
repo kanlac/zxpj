@@ -1,6 +1,7 @@
 package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.Constants;
+import com.zhuoxun.frame.internal.dialog.SearchDialog;
 import com.zhuoxun.frame.internal.dialog.manager.NewManagerDialog;
 import com.zhuoxun.model.Manager;
 import com.zhuoxun.model.table.ManagerTableModel;
@@ -48,6 +49,14 @@ public class ManagerOpr extends JInternalFrame {
         changePwBtn.setBounds(350, 10, 100, 30);
         this.add(changePwBtn);
 
+        JTextField searchTxet = new JTextField("请输入名称");
+        searchTxet.setBounds(520,10,160,30);
+        this.add(searchTxet);
+
+        JButton searchBtn = new JButton("搜索");
+        searchBtn.setBounds(690,10,100,30);
+        this.add(searchBtn);
+
         // Initialize table model
         List<Manager> managers = service.findAll();
         tableModel = new ManagerTableModel(managers);
@@ -67,6 +76,10 @@ public class ManagerOpr extends JInternalFrame {
         this.getContentPane().add(scrollPane);
 
         /*** Listeners ***/
+
+        searchBtn.addActionListener(e -> {
+            new SearchDialog(searchTxet.getText(),3);
+        });
 
         refreshBtn.addActionListener(e -> refreshData());
 

@@ -83,4 +83,21 @@ public class ManagerServiceImpl implements ManagerService {
 
         return rows != 0;
     }
+
+    @Override
+    public List<Manager> Search(String managername) {
+        qr = new QueryRunner();
+        List<Manager> r = null;
+        ResultSetHandler<List<Manager>> resultSetHandler = new BeanListHandler<>(Manager.class);
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, SQLQuery.Manager.SEARCH, resultSetHandler,"%"+managername+"%");
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
 }

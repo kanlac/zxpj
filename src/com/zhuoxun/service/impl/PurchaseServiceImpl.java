@@ -76,4 +76,21 @@ public class PurchaseServiceImpl implements PurchaseService {
         return r;
     }
 
+    @Override
+    public List<Purchase> Search(String purchasename) {
+        qr = new QueryRunner();
+        List<Purchase> r = null;
+        ResultSetHandler<List<Purchase>> resultSetHandler = new BeanListHandler<>(Purchase.class);
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, SQLQuery.Purchase.SEARCH, resultSetHandler,"%"+purchasename+"%");
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
+
 }

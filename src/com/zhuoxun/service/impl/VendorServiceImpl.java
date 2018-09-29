@@ -117,4 +117,21 @@ public class VendorServiceImpl implements VendorService {
 
         return rows != 0;
     }
+
+    @Override
+    public List<Vendor> Search(String vendorname) {
+        qr = new QueryRunner();
+        List<Vendor> r = null;
+        ResultSetHandler<List<Vendor>> resultSetHandler = new BeanListHandler<>(Vendor.class);
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, SQLQuery.Vendor.SEARCH, resultSetHandler,"%"+vendorname+"%");
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
 }

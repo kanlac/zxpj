@@ -13,4 +13,6 @@ public interface PurchaseService {
     boolean update(Purchase p);
 
     List<Purchase> findAll();
+
+    List<Purchase> Search(String purchasename);
 }

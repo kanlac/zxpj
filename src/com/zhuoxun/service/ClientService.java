@@ -15,4 +15,6 @@ public interface ClientService {
     List<Client> findAll();
 
     Client findById (int id);
+
+    List<Client> Search(String clientname);
 }

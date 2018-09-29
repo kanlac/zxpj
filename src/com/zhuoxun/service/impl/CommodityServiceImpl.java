@@ -88,4 +88,21 @@ public class CommodityServiceImpl implements CommodityService {
     public Commodity findById(int id) {
         return null;
     }
+
+    @Override
+    public List<Commodity> Search(String commodityname) {
+        qr = new QueryRunner();
+        List<Commodity> r = null;
+        ResultSetHandler<List<Commodity>> resultSetHandler = new BeanListHandler<>(Commodity.class);
+
+        try {
+            conn = MySQLHelper.getConn();
+            r = qr.query(conn, SQLQuery.Commodity.SEARCH, resultSetHandler,"%"+commodityname+"%");
+            MySQLHelper.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return r;
+    }
 }

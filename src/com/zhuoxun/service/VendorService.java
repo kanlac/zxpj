@@ -17,4 +17,6 @@ public interface VendorService {
     boolean delete(Integer id);
 
     boolean update(Vendor v);
+
+    List<Vendor> Search(String vendorname);
 }

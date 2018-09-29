@@ -1,5 +1,6 @@
 package com.zhuoxun.frame.internal;
 
+import com.zhuoxun.frame.internal.dialog.SearchDialog;
 import com.zhuoxun.frame.internal.dialog.purchase.AddPurchaseDialog;
 import com.zhuoxun.model.Purchase;
 import com.zhuoxun.model.table.PurchaseTableModel;
