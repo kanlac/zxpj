@@ -1,7 +1,7 @@
 CREATE DATABASE zxpj;
 USE zxpj;
 
-CREATE TABLE Manager(
+CREATE TABLE Manager (
   `manager_id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(32) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
@@ -27,17 +27,16 @@ CREATE TABLE Vendor (
   `address` VARCHAR(32),
   `postal_code` VARCHAR(6),
   `email` VARCHAR(32),
-  `note` INT(11),
+  `note` TEXT, -- UPDATED
   `mobile` VARCHAR(15) NOT NULL,
-  PRIMARY KEY (`vendor_id`),
-  CONSTRAINT fk FOREIGN KEY (sn) REFERENCES Commodity(isbn)
+  PRIMARY KEY (`vendor_id`)
 );
 
 CREATE TABLE Purchase (
   `purchase_id` INT(11) NOT NULL AUTO_INCREMENT,
   `number` VARCHAR(32) NOT NULL, -- 采购业务编号
   `date` DATETIME NOT NULL,
-  `cost` DECIMAL(19,2) NOT NULL,
+  `cost` DECIMAL(19, 2) NOT NULL,
   `note` VARCHAR(32), -- 采购备注
   `quantity` INT(11) NOT NULL,
   `status` INT(1) DEFAULT 0 NOT NULL, -- 未出库为 0
@@ -59,6 +58,7 @@ CREATE TABLE Sale (
   `quantity` INT(11) NOT NULL,
   `status` INT(1) DEFAULT 0 NOT NULL , -- 未送达为 0
   `commodity_id` INT(11) NOT NULL,
+  -- 客户外键
   `manager_id` INT(11) NOT NULL,
   PRIMARY KEY (`sale_id`),
   FOREIGN KEY (`commodity_id`) REFERENCES Commodity(`commodity_id`),

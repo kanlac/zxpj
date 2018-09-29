@@ -23,8 +23,8 @@ public class Home extends JFrame implements ActionListener {
         desktop = new JDesktopPane(); //a specialized layered pane
         //createDefaultInternalFrame();
 
-        setContentPane(desktop);
-        setJMenuBar(createMenuBar());
+        this.setContentPane(desktop);
+        this.setJMenuBar(createMenuBar());
     }
 
     private JMenuBar createMenuBar() {
@@ -36,7 +36,27 @@ public class Home extends JFrame implements ActionListener {
         systemMenu.setMnemonic(KeyEvent.VK_D); // test
         menuBar.add(systemMenu);
 
-        JMenuItem exitItem = new JMenuItem("关闭程序");
+        /** 1.1 **/
+
+        JMenuItem newWindowItem = new JMenuItem("新窗口");
+        newWindowItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.SHIFT_MASK));
+        newWindowItem.setActionCommand("newWindow");
+        newWindowItem.addActionListener(this);
+
+        systemMenu.add(newWindowItem);
+
+        /** 1.2 **/
+
+        JMenuItem closeWindowsItem = new JMenuItem("关闭此窗口");
+        closeWindowsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.SHIFT_MASK));
+        closeWindowsItem.setActionCommand("closeWindow");
+        closeWindowsItem.addActionListener(this);
+
+        systemMenu.add(closeWindowsItem);
+
+        /** 1.3 **/
+
+        JMenuItem exitItem = new JMenuItem("退出系统");
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.SHIFT_MASK));
         exitItem.setActionCommand("quit");
         exitItem.addActionListener(this);
@@ -139,6 +159,19 @@ public class Home extends JFrame implements ActionListener {
         System.exit(0);
     }
 
+    protected void newWindow() {
+        javax.swing.SwingUtilities.invokeLater((new Runnable() {
+            @Override
+            public void run() {
+                createAndShowGUI();
+            }
+        }));
+    }
+
+    protected void closeWindow() {
+        Home.this.dispose();
+    }
+
     protected void displayCommodityOpr() {
         desktop.removeAll();
 
@@ -204,7 +237,7 @@ public class Home extends JFrame implements ActionListener {
 
     }
 
-    /*** Override Listener ***/
+    /*** Listener ***/
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -222,6 +255,10 @@ public class Home extends JFrame implements ActionListener {
             displayClientOpr();
         } else if ("displaySaleOpr".equals(e.getActionCommand())) {
             displaySaleOpr();
+        } else if ("newWindow".equals(e.getActionCommand())) {
+            newWindow();
+        } else if ("closeWindow".equals(e.getActionCommand())) {
+            closeWindow();
         } else {
             System.err.println("Unhandled ActionEvent: " + e.getActionCommand());
         }
