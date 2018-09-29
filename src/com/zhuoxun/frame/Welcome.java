@@ -70,6 +70,7 @@ public class Welcome extends JFrame {
             } else if (!String.valueOf(password).equals(manager.getPassword())) {
                 JOptionPane.showMessageDialog(null, "密码错误");
             } else {
+                this.manager = manager;
                 javax.swing.SwingUtilities.invokeLater((new Runnable() {
                     @Override
                     public void run() {
