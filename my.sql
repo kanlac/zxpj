@@ -49,6 +49,17 @@ CREATE TABLE Purchase (
   FOREIGN KEY (`manager_id`) REFERENCES Manager(`manager_id`)
 );
 
+CREATE TABLE Client (
+  `client_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(32),
+  `postal_code` VARCHAR(6),
+  `email` VARCHAR(32),
+  `note` VARCHAR(32),
+  `mobile` VARCHAR(15),
+  PRIMARY KEY (`client_id`)
+);
+
 CREATE TABLE Sale (
   `sale_id` INT(11) NOT NULL AUTO_INCREMENT,
   `number` VARCHAR(32) NOT NULL, -- 销售业务编号

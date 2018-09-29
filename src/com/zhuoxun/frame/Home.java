@@ -1,10 +1,7 @@
 package com.zhuoxun.frame;
 
 import com.zhuoxun.frame.desktop.MyJDesktop;
-import com.zhuoxun.frame.internal.CommodityOpr;
-import com.zhuoxun.frame.internal.ManagerOpr;
-import com.zhuoxun.frame.internal.PurchaseOpr;
-import com.zhuoxun.frame.internal.VendorOpr;
+import com.zhuoxun.frame.internal.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -137,7 +134,6 @@ public class Home extends JFrame implements ActionListener {
 
         manageMenu.add(managerItem);
 
-
         return menuBar;
     }
 
@@ -246,7 +242,17 @@ public class Home extends JFrame implements ActionListener {
     }
 
     protected void displayClientOpr() {
+        desktop.removeAll();
 
+        ClientOpr clientOpr = new ClientOpr();
+        clientOpr.setVisible(true);
+        desktop.add(clientOpr);
+
+        try {
+            clientOpr.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void displaySaleOpr() {
@@ -277,6 +283,8 @@ public class Home extends JFrame implements ActionListener {
             closeWindow();
         } else if ("showDesktop".equals(e.getActionCommand())) {
             showDesktop();
+        } else if ("displayClientOpr".equals(e.getActionCommand())) {
+            displayClientOpr();
         } else {
             System.err.println("Unhandled ActionEvent: " + e.getActionCommand());
         }
