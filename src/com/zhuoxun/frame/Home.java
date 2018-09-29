@@ -22,13 +22,8 @@ public class Home extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null); // center
         this.setResizable(false);
 
-        // test
         desktop = new MyJDesktop();
-
-//        desktop = new JDesktopPane(); //a specialized layered pane
         //createDefaultInternalFrame();
-
-
 
         this.setContentPane(desktop);
         this.setJMenuBar(createMenuBar());
@@ -62,6 +57,15 @@ public class Home extends JFrame implements ActionListener {
         systemMenu.add(closeWindowsItem);
 
         /** 1.3 **/
+
+        JMenuItem showDesktopItem = new JMenuItem("显示桌面");
+        showDesktopItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.SHIFT_MASK));
+        showDesktopItem.setActionCommand("showDesktop");
+        showDesktopItem.addActionListener(this);
+
+        systemMenu.add(showDesktopItem);
+
+        /** 1.4 **/
 
         JMenuItem exitItem = new JMenuItem("退出系统");
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.SHIFT_MASK));
@@ -179,6 +183,11 @@ public class Home extends JFrame implements ActionListener {
         Home.this.dispose();
     }
 
+    protected void showDesktop() {
+        desktop.removeAll();
+        desktop.updateUI();
+    }
+
     protected void displayCommodityOpr() {
         desktop.removeAll();
 
@@ -266,6 +275,8 @@ public class Home extends JFrame implements ActionListener {
             newWindow();
         } else if ("closeWindow".equals(e.getActionCommand())) {
             closeWindow();
+        } else if ("showDesktop".equals(e.getActionCommand())) {
+            showDesktop();
         } else {
             System.err.println("Unhandled ActionEvent: " + e.getActionCommand());
         }
