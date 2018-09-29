@@ -1,6 +1,7 @@
 package com.zhuoxun.frame.internal;
 
 import com.zhuoxun.Constants;
+import com.zhuoxun.frame.internal.dialog.client.EditClientDialog;
 import com.zhuoxun.frame.internal.dialog.client.NewClientDialog;
 import com.zhuoxun.model.Client;
 import com.zhuoxun.model.table.ClientTableModel;
@@ -45,9 +46,9 @@ public class ClientOpr extends JInternalFrame {
         revokeClientBtn.setBounds(240, 10, 100, 30);
         this.add(revokeClientBtn);
 
-        JButton changePwBtn = new JButton("更改密码");
-        changePwBtn.setBounds(350, 10, 100, 30);
-        this.add(changePwBtn);
+        JButton editBtn = new JButton("编辑");
+        editBtn.setBounds(350, 10, 100, 30);
+        this.add(editBtn);
 
         JButton nullBtn = new JButton("");
         nullBtn.setVisible(false);
@@ -98,6 +99,16 @@ public class ClientOpr extends JInternalFrame {
                     }
                 }
 
+            }
+        });
+
+        editBtn.addActionListener(e -> {
+            int r = table.getSelectedRow();
+            if (r < 0) {
+                JOptionPane.showMessageDialog(null, "请选择要编辑的商品！");
+            } else {
+                Client c = tableModel.getObjectByRow(r);
+                new EditClientDialog(c);
             }
         });
 

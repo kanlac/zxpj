@@ -34,9 +34,9 @@ CREATE TABLE Vendor (
 
 CREATE TABLE Purchase (
   `purchase_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `number` VARCHAR(32) NOT NULL, -- 采购业务编号
+  `number` VARCHAR(32) UNIQUE NOT NULL, -- 采购业务编号
   `date` DATETIME NOT NULL,
-  `cost` DECIMAL(19, 2) NOT NULL,
+  `cost` DECIMAL(19,2) NOT NULL,
   `note` VARCHAR(32), -- 采购备注
   `quantity` INT(11) NOT NULL,
   `status` INT(1) DEFAULT 0 NOT NULL, -- 未出库为 0
@@ -62,14 +62,14 @@ CREATE TABLE Client (
 
 CREATE TABLE Sale (
   `sale_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `number` VARCHAR(32) NOT NULL, -- 销售业务编号
+  `number` VARCHAR(32) UNIQUE NOT NULL, -- 销售业务编号
   `date` DATETIME NOT NULL,
   `cost` DECIMAL(19,2) NOT NULL,
   `note` VARCHAR(32), -- 销售备注
   `quantity` INT(11) NOT NULL,
   `status` INT(1) DEFAULT 0 NOT NULL , -- 未送达为 0
   `commodity_id` INT(11) NOT NULL,
-  -- 客户外键
+  -- 外键到客户
   `manager_id` INT(11) NOT NULL,
   PRIMARY KEY (`sale_id`),
   FOREIGN KEY (`commodity_id`) REFERENCES Commodity(`commodity_id`),
